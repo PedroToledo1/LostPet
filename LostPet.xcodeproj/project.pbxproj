@@ -11,6 +11,7 @@
 		4A0A2CA12A8ABABE004BB1AE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0A2CA02A8ABABE004BB1AE /* ContentView.swift */; };
 		4A0A2CA32A8ABABE004BB1AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A0A2CA22A8ABABE004BB1AE /* Assets.xcassets */; };
 		4A0A2CA62A8ABABE004BB1AE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A0A2CA52A8ABABE004BB1AE /* Preview Assets.xcassets */; };
+		4A0A2CAF2A8AD588004BB1AE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4A0A2CAE2A8AD588004BB1AE /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,8 @@
 		4A0A2CA02A8ABABE004BB1AE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4A0A2CA22A8ABABE004BB1AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4A0A2CA52A8ABABE004BB1AE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4A0A2CAE2A8AD588004BB1AE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4A0A2CB12A8AD654004BB1AE /* firebase-ios-sdk-master */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "firebase-ios-sdk-master"; path = "../../../Downloads/firebase-ios-sdk-master"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +38,7 @@
 		4A0A2C922A8ABABD004BB1AE = {
 			isa = PBXGroup;
 			children = (
+				4A0A2CB02A8AD654004BB1AE /* Packages */,
 				4A0A2C9D2A8ABABE004BB1AE /* LostPet */,
 				4A0A2C9C2A8ABABE004BB1AE /* Products */,
 			);
@@ -54,6 +58,7 @@
 				4A0A2C9E2A8ABABE004BB1AE /* LostPetApp.swift */,
 				4A0A2CA02A8ABABE004BB1AE /* ContentView.swift */,
 				4A0A2CA22A8ABABE004BB1AE /* Assets.xcassets */,
+				4A0A2CAE2A8AD588004BB1AE /* GoogleService-Info.plist */,
 				4A0A2CA42A8ABABE004BB1AE /* Preview Content */,
 			);
 			path = LostPet;
@@ -65,6 +70,14 @@
 				4A0A2CA52A8ABABE004BB1AE /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4A0A2CB02A8AD654004BB1AE /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				4A0A2CB12A8AD654004BB1AE /* firebase-ios-sdk-master */,
+			);
+			name = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -111,6 +124,9 @@
 				Base,
 			);
 			mainGroup = 4A0A2C922A8ABABD004BB1AE;
+			packageReferences = (
+				4A0A2CB22A8AD700004BB1AE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 4A0A2C9C2A8ABABE004BB1AE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,6 +143,7 @@
 			files = (
 				4A0A2CA62A8ABABE004BB1AE /* Preview Assets.xcassets in Resources */,
 				4A0A2CA32A8ABABE004BB1AE /* Assets.xcassets in Resources */,
+				4A0A2CAF2A8AD588004BB1AE /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +356,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4A0A2CB22A8AD700004BB1AE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.13.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 4A0A2C932A8ABABD004BB1AE /* Project object */;
 }
