@@ -24,6 +24,7 @@
 		4A4281C52A8C1FDE000A11FC /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 4A4281C42A8C1FDE000A11FC /* GoogleSignIn */; };
 		4A4281C72A8C1FDE000A11FC /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4A4281C62A8C1FDE000A11FC /* GoogleSignInSwift */; };
 		4A4281CB2A8C2249000A11FC /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4281CA2A8C2249000A11FC /* Utilities.swift */; };
+		4A4281CE2A8C2D10000A11FC /* GoogleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4281CD2A8C2D10000A11FC /* GoogleHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		4A4281C12A8BF9B5000A11FC /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		4A4281C82A8C2048000A11FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4A4281CA2A8C2249000A11FC /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		4A4281CD2A8C2D10000A11FC /* GoogleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,8 +148,17 @@
 			isa = PBXGroup;
 			children = (
 				4A4281CA2A8C2249000A11FC /* Utilities.swift */,
+				4A4281CC2A8C2CF8000A11FC /* GoogleHelper */,
 			);
 			path = SignInOption;
+			sourceTree = "<group>";
+		};
+		4A4281CC2A8C2CF8000A11FC /* GoogleHelper */ = {
+			isa = PBXGroup;
+			children = (
+				4A4281CD2A8C2D10000A11FC /* GoogleHelper.swift */,
+			);
+			path = GoogleHelper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +247,7 @@
 			files = (
 				4A0A2CA12A8ABABE004BB1AE /* ContentView.swift in Sources */,
 				4A4281BD2A8BF530000A11FC /* AuthenticationManager.swift in Sources */,
+				4A4281CE2A8C2D10000A11FC /* GoogleHelper.swift in Sources */,
 				4A4281CB2A8C2249000A11FC /* Utilities.swift in Sources */,
 				4A0A2C9F2A8ABABE004BB1AE /* LostPetApp.swift in Sources */,
 				4A4281C22A8BF9B5000A11FC /* SettingView.swift in Sources */,

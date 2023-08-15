@@ -10,14 +10,16 @@ import GoogleSignIn
 import GoogleSignInSwift
 import FirebaseAuth
 
+
+
+
 @MainActor
 final class AuthenticationViewModel: ObservableObject{
     func signInGoogle() async throws{
-        
         let helper = SignInGoogleHelper()
         let tokens = try await helper.signIn()
-        let authDataResult = try await AuthManager.shared.signInWithGoogle(tokens: tokens)
-        try await UserManager.shared.createNewUser(auth: authDataResult)
+        try await AuthenticationManager.shared.signInwithGoogle(tokens: tokens)
+        
     }
 }
 
@@ -55,6 +57,7 @@ struct AuthView: View {
                 .foregroundColor(.white)
             })
         }
+        .padding()
     }
 }
 
