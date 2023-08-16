@@ -12,6 +12,9 @@ final class SettingViewModel: ObservableObject{
     func logOut() throws {
         try AuthenticationManager.shared.signOut()
     }
+    func delete()async throws{
+        try await AuthenticationManager.shared.delete()
+    }
 }
 struct SettingView: View {
     
@@ -20,7 +23,6 @@ struct SettingView: View {
     
     var body: some View {
         List {
-            
             Button(action: {
                 Task{
                     do{
@@ -33,6 +35,22 @@ struct SettingView: View {
                     }
                 }
             }, label: {Text("Log Out")})
+            Section("Delete Account"){
+                Button(role: .destructive, action: {
+                    Task{
+                        do{
+                            try await viewModel.delete()
+                            showsignInView = true
+                            print("se elimino la cuenta")
+                            
+                        } catch {
+                            print("error delete")
+                        }
+                    }
+                }, label: {
+                    Text("DELETE ACCOUNT")
+                })
+            }
         }
         .navigationBarTitle("Settings")
     }
