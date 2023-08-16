@@ -20,16 +20,19 @@ struct SettingView: View {
     
     var body: some View {
         List {
-            Button("Log Out"){
+            
+            Button(action: {
                 Task{
                     do{
                         try viewModel.logOut()
-                        showsignInView = false
-                    } catch{
-                        
+                        showsignInView = true
+                        print("se logout exitoso")
+                        print(showsignInView)
+                    } catch {
+                        print("error log out")
                     }
                 }
-            }
+            }, label: {Text("Log Out")})
         }
         .navigationBarTitle("Settings")
     }
