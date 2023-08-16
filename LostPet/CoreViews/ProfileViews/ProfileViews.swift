@@ -12,8 +12,8 @@ final class ProfileViewModel: ObservableObject {
     
     @Published private(set) var user: AuthDataResultModel? = nil
     
-    func loadCurrentUser() async throws{
-        let authDataResult = try AuthenticationManager.shared.getAuthenticatedUser()
+    func loadCurrentUser() throws{
+        self.user = try AuthenticationManager.shared.getAuthenticatedUser()
     }
 }
 
@@ -27,6 +27,9 @@ struct ProfileViews: View {
             if let user = viewModel.user {
                 Text("UserID: \(user.uid)")
             }
+        }
+        .onAppear{
+            try? viewModel.loadCurrentUser()
         }
         .navigationTitle("Profile")
         .toolbar{
