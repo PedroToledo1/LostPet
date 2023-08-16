@@ -13,6 +13,8 @@ import SwiftUI
 struct SignInWithAppleResult{
     let token: String
     let nonce: String
+    let name: String?
+    let email: String?
 }
 
 struct SignInWithAppleButttonViewRepresentable:  UIViewRepresentable{
@@ -115,7 +117,9 @@ extension SignInAppleHelper: ASAuthorizationControllerDelegate {
             print("error en apple sign in")
             return
         }
-        let tokens = SignInWithAppleResult(token: idTokenString, nonce: nonce)
+        let name = appleIDCredential.fullName?.familyName
+        let email = appleIDCredential.email
+        let tokens = SignInWithAppleResult(token: idTokenString, nonce: nonce, name: name, email: email)
         
     }
 
