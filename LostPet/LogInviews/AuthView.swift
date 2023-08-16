@@ -67,19 +67,19 @@ struct AuthView: View {
                 .foregroundColor(.white)
             })
             Button(action: {
-                Task{
-                    do{
+                Task {
+                    do {
                         try await viewModel.signInApple()
                         showsignInView = false
-                    }catch{
-                        print("error Apple")
+                    } catch {
+                        print(error)
                     }
                 }
             }, label: {
-                SignInWithAppleButttonViewRepresentable(type: .continue, style: .black)
+                SignInWithAppleButtonViewRepresentable(type: .default, style: .black)
                     .allowsHitTesting(false)
             })
-            .frame(height: 58)
+            .frame(height: 55)
         }
         .padding()
     }
