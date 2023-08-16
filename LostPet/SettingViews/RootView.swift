@@ -15,6 +15,7 @@ struct RootView: View {
                 SettingView(showsignInView: $showsignInView)
             }
             .onAppear{
+                try? AuthenticationManager.shared.getProvider()
                 let authuser = try? AuthenticationManager.shared.getAuthenticatedUser()
                 self.showsignInView = authuser == nil ? true : false
             }

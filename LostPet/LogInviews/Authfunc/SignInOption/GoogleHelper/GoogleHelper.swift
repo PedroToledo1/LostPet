@@ -13,6 +13,8 @@ import FirebaseAuth
 struct GoogleSignInResultModel{
     let idToken: String
     let accessToken: String
+    let name: String?
+    let email: String?
 }
 
 final class SignInGoogleHelper{
@@ -25,7 +27,10 @@ final class SignInGoogleHelper{
             throw URLError(.badServerResponse)
         }
         let accessToken = gidSignInResult.user.accessToken.tokenString
-        let tokens = GoogleSignInResultModel(idToken: idToken, accessToken: accessToken)
+        let name = gidSignInResult.user.profile?.name
+        let email = gidSignInResult.user.profile?.email
+        
+        let tokens = GoogleSignInResultModel(idToken: idToken, accessToken: accessToken, name: name, email: email)
         return tokens
     }
 }
