@@ -25,6 +25,7 @@
 		4A4281C72A8C1FDE000A11FC /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4A4281C62A8C1FDE000A11FC /* GoogleSignInSwift */; };
 		4A4281CB2A8C2249000A11FC /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4281CA2A8C2249000A11FC /* Utilities.swift */; };
 		4A4281CE2A8C2D10000A11FC /* GoogleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4281CD2A8C2D10000A11FC /* GoogleHelper.swift */; };
+		4AD865232A8C69750012A1FF /* AppleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD865222A8C69750012A1FF /* AppleHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,8 @@
 		4A4281C82A8C2048000A11FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4A4281CA2A8C2249000A11FC /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		4A4281CD2A8C2D10000A11FC /* GoogleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleHelper.swift; sourceTree = "<group>"; };
+		4AD865212A8C5BC60012A1FF /* LostPet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LostPet.entitlements; sourceTree = "<group>"; };
+		4AD865222A8C69750012A1FF /* AppleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +84,7 @@
 		4A0A2C9D2A8ABABE004BB1AE /* LostPet */ = {
 			isa = PBXGroup;
 			children = (
+				4AD865212A8C5BC60012A1FF /* LostPet.entitlements */,
 				4A4281C82A8C2048000A11FC /* Info.plist */,
 				4A0A2C9E2A8ABABE004BB1AE /* LostPetApp.swift */,
 				4A0A2CA02A8ABABE004BB1AE /* ContentView.swift */,
@@ -149,6 +153,7 @@
 			children = (
 				4A4281CA2A8C2249000A11FC /* Utilities.swift */,
 				4A4281CC2A8C2CF8000A11FC /* GoogleHelper */,
+				4AD865242A8C697A0012A1FF /* AppleHelper */,
 			);
 			path = SignInOption;
 			sourceTree = "<group>";
@@ -159,6 +164,14 @@
 				4A4281CD2A8C2D10000A11FC /* GoogleHelper.swift */,
 			);
 			path = GoogleHelper;
+			sourceTree = "<group>";
+		};
+		4AD865242A8C697A0012A1FF /* AppleHelper */ = {
+			isa = PBXGroup;
+			children = (
+				4AD865222A8C69750012A1FF /* AppleHelper.swift */,
+			);
+			path = AppleHelper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A0A2CA12A8ABABE004BB1AE /* ContentView.swift in Sources */,
+				4AD865232A8C69750012A1FF /* AppleHelper.swift in Sources */,
 				4A4281BD2A8BF530000A11FC /* AuthenticationManager.swift in Sources */,
 				4A4281CE2A8C2D10000A11FC /* GoogleHelper.swift in Sources */,
 				4A4281CB2A8C2249000A11FC /* Utilities.swift in Sources */,
@@ -378,6 +392,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = LostPet/LostPet.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"LostPet/Preview Content\"";
@@ -408,6 +423,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = LostPet/LostPet.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"LostPet/Preview Content\"";

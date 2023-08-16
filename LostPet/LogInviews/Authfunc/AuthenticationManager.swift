@@ -50,6 +50,11 @@ extension AuthenticationManager {
         let credential = GoogleAuthProvider.credential(withIDToken: tokens.idToken, accessToken: tokens.accessToken)
         return try await signInwithCredential(credential: credential)
     }
+    @discardableResult
+    func signInwithApple(tokens: SignInWithAppleResult)async throws -> AuthDataResultModel{
+        let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: tokens.token , rawNonce: tokens.nonce)
+        return try await signInwithCredential(credential: credential)
+    }
     func signInwithCredential(credential: AuthCredential)async throws -> AuthDataResultModel{
         let authDataResult = try await Auth.auth().signIn(with: credential)
         return AuthDataResultModel(user: authDataResult.user)
