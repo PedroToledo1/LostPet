@@ -12,7 +12,7 @@ struct RootView: View {
     var body: some View {
         ZStack{
             NavigationStack{
-                SettingView(showsignInView: $showsignInView)
+                ProfileViews(showsignInView: $showsignInView)
             }
             .onAppear{
                 try? AuthenticationManager.shared.getProvider()
