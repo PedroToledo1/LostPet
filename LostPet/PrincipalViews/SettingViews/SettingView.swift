@@ -29,7 +29,6 @@ struct SettingView: View {
                         try viewModel.logOut()
                         showsignInView = true
                         print("se logout exitoso")
-                        print(showsignInView)
                     } catch {
                         print("error log out")
                     }
