@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-struct DBUser{
+struct DBUser: Codable {
     let userID : String
     let email : String?
     let photourl : String?
@@ -20,32 +20,27 @@ final class UserManager {
     static let shared = UserManager()
     private init(){}
     
-    
-    func createNewUser(auth: AuthDataResultModel) async throws{
-        var userData: [String: Any] = [
-            "user_id": auth.uid,
-            "date_created": Timestamp()
-        ]
-        if let email = auth.email{
-            userData["email"] = email
-        }
-        if let photourl = auth.photoUrl{
-            userData["photo_url"] = photourl
-        }
-        try await Firestore.firestore().collection("users").document(auth.uid).setData(userData, merge: false)
+    private let  userCollection = Firestore.firestore().collection("users")
+    private func userDocument(userID: String)->DocumentReference{
+        userCollection.document(userID)
     }
     
-    func getUser(UserID: String) async throws -> DBUser {
-        let snapshot = try await Firestore.firestore().collection("users").document(UserID).getDocument()
-        guard let data = snapshot.data() else {
-            throw URLError(.badURL)
-        }
-        let userID = data["user_id"] as? String
-        let email = data["email"] as? String
-        let photourl = data["photo_url"] as? String
-        let dateCreated = data["date_created"] as? Date
-        
-        return DBUser(userID: UserID, email: email, photourl: photourl, dateCreated: dateCreated)
-        
+    private let encoder: Firestore.Encoder = {
+        let encoder = Firestore.Encoder()
+        encoder.keyEncodingStrategy = .convertToSnakeCase
+        return encoder
+    }()
+    private let decoder: Firestore.Decoder = {
+        let decoder = Firestore.Decoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
+    }()
+    
+    func createNewUser(user: DBUser) async throws {
+        try userDocument(userID: user.userID).setData(from: user, merge: false, encoder: encoder)
+    }
+    
+    func getUser(UserID: String) async throws -> DBUser{
+        try await userDocument(userID: UserID).getDocument(as: DBUser.self, decoder: decoder)
     }
 }
