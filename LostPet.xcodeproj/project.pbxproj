@@ -32,6 +32,10 @@
 		4AD8655C2A8D3A540012A1FF /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD8655B2A8D3A540012A1FF /* AuthenticationViewModel.swift */; };
 		4AD8655E2A8E4CED0012A1FF /* MarkerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD8655D2A8E4CED0012A1FF /* MarkerManager.swift */; };
 		4AD865612A8E550F0012A1FF /* MarkerStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD865602A8E550F0012A1FF /* MarkerStructs.swift */; };
+		4AD865662A8FF9140012A1FF /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD865652A8FF9140012A1FF /* MapView.swift */; };
+		4AD865692A8FF95F0012A1FF /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD865682A8FF95F0012A1FF /* MapManager.swift */; };
+		4AD8656B2A8FFD1E0012A1FF /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD8656A2A8FFD1E0012A1FF /* NavigationBar.swift */; };
+		4AD8656D2A8FFD3D0012A1FF /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD8656C2A8FFD3D0012A1FF /* CameraView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +59,10 @@
 		4AD8655B2A8D3A540012A1FF /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		4AD8655D2A8E4CED0012A1FF /* MarkerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerManager.swift; sourceTree = "<group>"; };
 		4AD865602A8E550F0012A1FF /* MarkerStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerStructs.swift; sourceTree = "<group>"; };
+		4AD865652A8FF9140012A1FF /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		4AD865682A8FF95F0012A1FF /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
+		4AD8656A2A8FFD1E0012A1FF /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		4AD8656C2A8FFD3D0012A1FF /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +110,8 @@
 				4A0A2CA02A8ABABE004BB1AE /* ContentView.swift */,
 				4AD865542A8D2D7E0012A1FF /* PrincipalViews */,
 				4AD865532A8D2D710012A1FF /* CoreViews */,
+				4AD865672A8FF92C0012A1FF /* MapManager */,
+				4AD865622A8FF7680012A1FF /* MarkersUtilities */,
 				4AD865582A8D356B0012A1FF /* Firestore */,
 				4A0A2CA22A8ABABE004BB1AE /* Assets.xcassets */,
 				4A0A2CAE2A8AD588004BB1AE /* GoogleService-Info.plist */,
@@ -137,8 +147,7 @@
 		4A4281BA2A8BF414000A11FC /* LogInviews */ = {
 			isa = PBXGroup;
 			children = (
-				4A4281B82A8BF40F000A11FC /* AuthView.swift */,
-				4AD8655B2A8D3A540012A1FF /* AuthenticationViewModel.swift */,
+				4AD865632A8FF8CB0012A1FF /* PrincipalViews */,
 				4A4281BB2A8BF505000A11FC /* Authfunc */,
 			);
 			path = LogInviews;
@@ -147,7 +156,7 @@
 		4A4281BB2A8BF505000A11FC /* Authfunc */ = {
 			isa = PBXGroup;
 			children = (
-				4A4281BC2A8BF530000A11FC /* AuthenticationManager.swift */,
+				4AD865642A8FF8E30012A1FF /* AuthViews */,
 				4A4281C92A8C2232000A11FC /* SignInOption */,
 			);
 			path = Authfunc;
@@ -200,24 +209,14 @@
 			isa = PBXGroup;
 			children = (
 				4A4281C02A8BF9A6000A11FC /* SettingViews */,
-				4AD865552A8D2DB10012A1FF /* ProfileViews */,
 			);
 			path = PrincipalViews;
-			sourceTree = "<group>";
-		};
-		4AD865552A8D2DB10012A1FF /* ProfileViews */ = {
-			isa = PBXGroup;
-			children = (
-				4AD865562A8D2DE30012A1FF /* ProfileViews.swift */,
-			);
-			path = ProfileViews;
 			sourceTree = "<group>";
 		};
 		4AD865582A8D356B0012A1FF /* Firestore */ = {
 			isa = PBXGroup;
 			children = (
 				4AD865592A8D35F20012A1FF /* UserManager.swift */,
-				4AD8655D2A8E4CED0012A1FF /* MarkerManager.swift */,
 			);
 			path = Firestore;
 			sourceTree = "<group>";
@@ -226,9 +225,46 @@
 			isa = PBXGroup;
 			children = (
 				4A4281CA2A8C2249000A11FC /* Utilities.swift */,
-				4AD865602A8E550F0012A1FF /* MarkerStructs.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		4AD865622A8FF7680012A1FF /* MarkersUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				4AD8655D2A8E4CED0012A1FF /* MarkerManager.swift */,
+				4AD865602A8E550F0012A1FF /* MarkerStructs.swift */,
+			);
+			path = MarkersUtilities;
+			sourceTree = "<group>";
+		};
+		4AD865632A8FF8CB0012A1FF /* PrincipalViews */ = {
+			isa = PBXGroup;
+			children = (
+				4AD865652A8FF9140012A1FF /* MapView.swift */,
+				4AD8656A2A8FFD1E0012A1FF /* NavigationBar.swift */,
+				4AD8656C2A8FFD3D0012A1FF /* CameraView.swift */,
+				4AD865562A8D2DE30012A1FF /* ProfileViews.swift */,
+			);
+			path = PrincipalViews;
+			sourceTree = "<group>";
+		};
+		4AD865642A8FF8E30012A1FF /* AuthViews */ = {
+			isa = PBXGroup;
+			children = (
+				4A4281BC2A8BF530000A11FC /* AuthenticationManager.swift */,
+				4AD8655B2A8D3A540012A1FF /* AuthenticationViewModel.swift */,
+				4A4281B82A8BF40F000A11FC /* AuthView.swift */,
+			);
+			path = AuthViews;
+			sourceTree = "<group>";
+		};
+		4AD865672A8FF92C0012A1FF /* MapManager */ = {
+			isa = PBXGroup;
+			children = (
+				4AD865682A8FF95F0012A1FF /* MapManager.swift */,
+			);
+			path = MapManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,13 +352,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AD8656B2A8FFD1E0012A1FF /* NavigationBar.swift in Sources */,
 				4AD8655C2A8D3A540012A1FF /* AuthenticationViewModel.swift in Sources */,
 				4A0A2CA12A8ABABE004BB1AE /* ContentView.swift in Sources */,
+				4AD8656D2A8FFD3D0012A1FF /* CameraView.swift in Sources */,
 				4AD865232A8C69750012A1FF /* AppleHelper.swift in Sources */,
 				4AD865572A8D2DE30012A1FF /* ProfileViews.swift in Sources */,
+				4AD865692A8FF95F0012A1FF /* MapManager.swift in Sources */,
 				4A4281BD2A8BF530000A11FC /* AuthenticationManager.swift in Sources */,
 				4A4281CE2A8C2D10000A11FC /* GoogleHelper.swift in Sources */,
 				4A4281CB2A8C2249000A11FC /* Utilities.swift in Sources */,
+				4AD865662A8FF9140012A1FF /* MapView.swift in Sources */,
 				4A0A2C9F2A8ABABE004BB1AE /* LostPetApp.swift in Sources */,
 				4AD865612A8E550F0012A1FF /* MarkerStructs.swift in Sources */,
 				4A4281C22A8BF9B5000A11FC /* SettingView.swift in Sources */,

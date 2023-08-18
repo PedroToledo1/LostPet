@@ -17,9 +17,11 @@ struct DBMarker {
     let photo_url: UIImage
     let coordinate: CLLocationCoordinate2D
     let date_created : Date
+    let userId: String
 }
 
 final class markerManager {
+    
     static let shared = markerManager()
     private init(){}
     
@@ -28,7 +30,5 @@ final class markerManager {
     private func markerDocument(marker_id: String)->DocumentReference{
         markerCollection.document(marker_id)
     }
-    //func uploadMarker(marker: Marker)async throws{
-    //    try markerDocument(marker: marker.marker_id).setData(from: marker, encoder: <#T##Firestore.Encoder#>)
-    //}
+    
 }
