@@ -30,6 +30,8 @@
 		4AD865572A8D2DE30012A1FF /* ProfileViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD865562A8D2DE30012A1FF /* ProfileViews.swift */; };
 		4AD8655A2A8D35F20012A1FF /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD865592A8D35F20012A1FF /* UserManager.swift */; };
 		4AD8655C2A8D3A540012A1FF /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD8655B2A8D3A540012A1FF /* AuthenticationViewModel.swift */; };
+		4AD8655E2A8E4CED0012A1FF /* MarkerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD8655D2A8E4CED0012A1FF /* MarkerManager.swift */; };
+		4AD865612A8E550F0012A1FF /* MarkerStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD865602A8E550F0012A1FF /* MarkerStructs.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +53,8 @@
 		4AD865562A8D2DE30012A1FF /* ProfileViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViews.swift; sourceTree = "<group>"; };
 		4AD865592A8D35F20012A1FF /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		4AD8655B2A8D3A540012A1FF /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
+		4AD8655D2A8E4CED0012A1FF /* MarkerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerManager.swift; sourceTree = "<group>"; };
+		4AD865602A8E550F0012A1FF /* MarkerStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerStructs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,7 +165,6 @@
 		4A4281C92A8C2232000A11FC /* SignInOption */ = {
 			isa = PBXGroup;
 			children = (
-				4A4281CA2A8C2249000A11FC /* Utilities.swift */,
 				4A4281CC2A8C2CF8000A11FC /* GoogleHelper */,
 				4AD865242A8C697A0012A1FF /* AppleHelper */,
 			);
@@ -188,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				4A4281BA2A8BF414000A11FC /* LogInviews */,
+				4AD8655F2A8E54E70012A1FF /* Utilities */,
 			);
 			path = CoreViews;
 			sourceTree = "<group>";
@@ -213,8 +217,18 @@
 			isa = PBXGroup;
 			children = (
 				4AD865592A8D35F20012A1FF /* UserManager.swift */,
+				4AD8655D2A8E4CED0012A1FF /* MarkerManager.swift */,
 			);
 			path = Firestore;
+			sourceTree = "<group>";
+		};
+		4AD8655F2A8E54E70012A1FF /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				4A4281CA2A8C2249000A11FC /* Utilities.swift */,
+				4AD865602A8E550F0012A1FF /* MarkerStructs.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,10 +324,12 @@
 				4A4281CE2A8C2D10000A11FC /* GoogleHelper.swift in Sources */,
 				4A4281CB2A8C2249000A11FC /* Utilities.swift in Sources */,
 				4A0A2C9F2A8ABABE004BB1AE /* LostPetApp.swift in Sources */,
+				4AD865612A8E550F0012A1FF /* MarkerStructs.swift in Sources */,
 				4A4281C22A8BF9B5000A11FC /* SettingView.swift in Sources */,
 				4A4281B92A8BF40F000A11FC /* AuthView.swift in Sources */,
 				4AD8655A2A8D35F20012A1FF /* UserManager.swift in Sources */,
 				4A4281BF2A8BF6F7000A11FC /* RootView.swift in Sources */,
+				4AD8655E2A8E4CED0012A1FF /* MarkerManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
