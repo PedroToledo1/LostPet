@@ -27,9 +27,6 @@ struct ProfileViews: View {
         List{
             if let user = viewModel.user {
                 Text("UserID: \(user.userID)")
-                //if let user.email {
-                //    Text("Email: \(user.email)")
-                //}
             }
         }
         .task {
