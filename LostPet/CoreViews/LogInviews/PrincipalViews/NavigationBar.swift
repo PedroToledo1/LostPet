@@ -8,13 +8,42 @@
 import SwiftUI
 
 struct NavigationBar: View {
+    @Binding var showsignInView: Bool
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            
+            TabView{
+                NavigationView {
+                    MapView()
+                }
+                .tabItem{
+                    Image(systemName: "map.circle")
+                    Text("Map")
+                }
+                NavigationView {
+                    CameraView()
+                }
+                .tabItem{
+                    Image(systemName: "camera.circle")
+                    Text("Camara")
+                }
+                NavigationView {
+                    ProfileViews(showsignInView: $showsignInView)
+                }
+                .tabItem{
+                    Image(systemName: "person.crop.circle")
+                    Text("Account")
+                }
+            }
+            .onAppear{
+                //locationManager.checkIfLocationServiceIsEnable()
+            }
+        }
     }
 }
 
 struct NavigationBar_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationBar()
+        NavigationBar(showsignInView: .constant(false))
     }
 }
