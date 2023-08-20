@@ -8,8 +8,14 @@
 import Foundation
 import MapKit
 
+enum MapDetails {
+    static let startingLocation = CLLocationCoordinate2D(latitude: 37.331516, longitude: -121.891054)
+    static let defaultSpan = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+}
+
+
 final class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate{
-    @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.331516, longitude: -121.891054), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+    @Published var region = MKCoordinateRegion(center: MapDetails.startingLocation, span: MapDetails.defaultSpan)
     
     var locationManager: CLLocationManager?
     
