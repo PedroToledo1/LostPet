@@ -36,7 +36,7 @@ struct NavigationBar: View {
                 }
             }
             .onAppear{
-                //locationManager.checkIfLocationServiceIsEnable()
+                
             }
         }
     }

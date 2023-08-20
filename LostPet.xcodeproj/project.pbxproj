@@ -236,6 +236,7 @@
 		4AD865622A8FF7680012A1FF /* MarkersUtilities */ = {
 			isa = PBXGroup;
 			children = (
+				4AD8655D2A8E4CED0012A1FF /* MarkerManager.swift */,
 				4AD865722A9291110012A1FF /* MarkerManagerDB.swift */,
 			);
 			path = MarkersUtilities;
@@ -256,7 +257,6 @@
 			isa = PBXGroup;
 			children = (
 				4A4281BC2A8BF530000A11FC /* AuthenticationManager.swift */,
-				4AD8655D2A8E4CED0012A1FF /* MarkerManager.swift */,
 				4AD8655B2A8D3A540012A1FF /* AuthenticationViewModel.swift */,
 				4A4281B82A8BF40F000A11FC /* AuthView.swift */,
 			);
