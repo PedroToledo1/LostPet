@@ -36,6 +36,7 @@
 		4AD865692A8FF95F0012A1FF /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD865682A8FF95F0012A1FF /* MapManager.swift */; };
 		4AD8656B2A8FFD1E0012A1FF /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD8656A2A8FFD1E0012A1FF /* NavigationBar.swift */; };
 		4AD8656D2A8FFD3D0012A1FF /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD8656C2A8FFD3D0012A1FF /* CameraView.swift */; };
+		4AD8656F2A91B8120012A1FF /* UserLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD8656E2A91B8120012A1FF /* UserLocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		4AD865682A8FF95F0012A1FF /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
 		4AD8656A2A8FFD1E0012A1FF /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		4AD8656C2A8FFD3D0012A1FF /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		4AD8656E2A91B8120012A1FF /* UserLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				4AD865652A8FF9140012A1FF /* MapView.swift */,
+				4AD8656E2A91B8120012A1FF /* UserLocationManager.swift */,
 				4AD8656A2A8FFD1E0012A1FF /* NavigationBar.swift */,
 				4AD8656C2A8FFD3D0012A1FF /* CameraView.swift */,
 				4AD865562A8D2DE30012A1FF /* ProfileViews.swift */,
@@ -354,6 +357,7 @@
 			files = (
 				4AD8656B2A8FFD1E0012A1FF /* NavigationBar.swift in Sources */,
 				4AD8655C2A8D3A540012A1FF /* AuthenticationViewModel.swift in Sources */,
+				4AD8656F2A91B8120012A1FF /* UserLocationManager.swift in Sources */,
 				4A0A2CA12A8ABABE004BB1AE /* ContentView.swift in Sources */,
 				4AD8656D2A8FFD3D0012A1FF /* CameraView.swift in Sources */,
 				4AD865232A8C69750012A1FF /* AppleHelper.swift in Sources */,

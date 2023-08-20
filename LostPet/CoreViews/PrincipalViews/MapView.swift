@@ -9,11 +9,11 @@ import MapKit
 
 
 struct MapView: View {
-    
-    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.331516, longitude: -121.891054), span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+    @StateObject private var userLocation = LocationViewModel()
+    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.331516, longitude: -121.891054), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
     
     var body: some View {
-        Map(coordinateRegion: $region)
+        Map(coordinateRegion: $region, showsUserLocation: true)
     }
 }
 
