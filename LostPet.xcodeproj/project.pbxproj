@@ -31,12 +31,11 @@
 		4AD8655A2A8D35F20012A1FF /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD865592A8D35F20012A1FF /* UserManager.swift */; };
 		4AD8655C2A8D3A540012A1FF /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD8655B2A8D3A540012A1FF /* AuthenticationViewModel.swift */; };
 		4AD8655E2A8E4CED0012A1FF /* MarkerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD8655D2A8E4CED0012A1FF /* MarkerManager.swift */; };
-		4AD865612A8E550F0012A1FF /* MarkerStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD865602A8E550F0012A1FF /* MarkerStructs.swift */; };
 		4AD865662A8FF9140012A1FF /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD865652A8FF9140012A1FF /* MapView.swift */; };
-		4AD865692A8FF95F0012A1FF /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD865682A8FF95F0012A1FF /* MapManager.swift */; };
 		4AD8656B2A8FFD1E0012A1FF /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD8656A2A8FFD1E0012A1FF /* NavigationBar.swift */; };
 		4AD8656D2A8FFD3D0012A1FF /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD8656C2A8FFD3D0012A1FF /* CameraView.swift */; };
 		4AD8656F2A91B8120012A1FF /* UserLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD8656E2A91B8120012A1FF /* UserLocationManager.swift */; };
+		4AD865732A9291110012A1FF /* MarkerManagerDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD865722A9291110012A1FF /* MarkerManagerDB.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,12 +58,11 @@
 		4AD865592A8D35F20012A1FF /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		4AD8655B2A8D3A540012A1FF /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		4AD8655D2A8E4CED0012A1FF /* MarkerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerManager.swift; sourceTree = "<group>"; };
-		4AD865602A8E550F0012A1FF /* MarkerStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerStructs.swift; sourceTree = "<group>"; };
 		4AD865652A8FF9140012A1FF /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
-		4AD865682A8FF95F0012A1FF /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
 		4AD8656A2A8FFD1E0012A1FF /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		4AD8656C2A8FFD3D0012A1FF /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		4AD8656E2A91B8120012A1FF /* UserLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationManager.swift; sourceTree = "<group>"; };
+		4AD865722A9291110012A1FF /* MarkerManagerDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerManagerDB.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,8 +232,7 @@
 		4AD865622A8FF7680012A1FF /* MarkersUtilities */ = {
 			isa = PBXGroup;
 			children = (
-				4AD8655D2A8E4CED0012A1FF /* MarkerManager.swift */,
-				4AD865602A8E550F0012A1FF /* MarkerStructs.swift */,
+				4AD865722A9291110012A1FF /* MarkerManagerDB.swift */,
 			);
 			path = MarkersUtilities;
 			sourceTree = "<group>";
@@ -244,7 +241,6 @@
 			isa = PBXGroup;
 			children = (
 				4AD865652A8FF9140012A1FF /* MapView.swift */,
-				4AD8656E2A91B8120012A1FF /* UserLocationManager.swift */,
 				4AD8656A2A8FFD1E0012A1FF /* NavigationBar.swift */,
 				4AD8656C2A8FFD3D0012A1FF /* CameraView.swift */,
 				4AD865562A8D2DE30012A1FF /* ProfileViews.swift */,
@@ -256,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				4A4281BC2A8BF530000A11FC /* AuthenticationManager.swift */,
+				4AD8655D2A8E4CED0012A1FF /* MarkerManager.swift */,
 				4AD8655B2A8D3A540012A1FF /* AuthenticationViewModel.swift */,
 				4A4281B82A8BF40F000A11FC /* AuthView.swift */,
 			);
@@ -265,7 +262,7 @@
 		4AD865672A8FF92C0012A1FF /* MapManager */ = {
 			isa = PBXGroup;
 			children = (
-				4AD865682A8FF95F0012A1FF /* MapManager.swift */,
+				4AD8656E2A91B8120012A1FF /* UserLocationManager.swift */,
 			);
 			path = MapManager;
 			sourceTree = "<group>";
@@ -362,13 +359,12 @@
 				4AD8656D2A8FFD3D0012A1FF /* CameraView.swift in Sources */,
 				4AD865232A8C69750012A1FF /* AppleHelper.swift in Sources */,
 				4AD865572A8D2DE30012A1FF /* ProfileViews.swift in Sources */,
-				4AD865692A8FF95F0012A1FF /* MapManager.swift in Sources */,
+				4AD865732A9291110012A1FF /* MarkerManagerDB.swift in Sources */,
 				4A4281BD2A8BF530000A11FC /* AuthenticationManager.swift in Sources */,
 				4A4281CE2A8C2D10000A11FC /* GoogleHelper.swift in Sources */,
 				4A4281CB2A8C2249000A11FC /* Utilities.swift in Sources */,
 				4AD865662A8FF9140012A1FF /* MapView.swift in Sources */,
 				4A0A2C9F2A8ABABE004BB1AE /* LostPetApp.swift in Sources */,
-				4AD865612A8E550F0012A1FF /* MarkerStructs.swift in Sources */,
 				4A4281C22A8BF9B5000A11FC /* SettingView.swift in Sources */,
 				4A4281B92A8BF40F000A11FC /* AuthView.swift in Sources */,
 				4AD8655A2A8D35F20012A1FF /* UserManager.swift in Sources */,
