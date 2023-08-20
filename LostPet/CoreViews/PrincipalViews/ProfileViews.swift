@@ -23,6 +23,7 @@ struct ProfileViews: View {
     
     @StateObject private var viewModel = ProfileViewModel()
     @Binding var showsignInView: Bool
+    
     var body: some View {
         List{
             if let user = viewModel.user {

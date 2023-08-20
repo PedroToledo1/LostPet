@@ -147,7 +147,6 @@
 		4A4281BA2A8BF414000A11FC /* LogInviews */ = {
 			isa = PBXGroup;
 			children = (
-				4AD865632A8FF8CB0012A1FF /* PrincipalViews */,
 				4A4281BB2A8BF505000A11FC /* Authfunc */,
 			);
 			path = LogInviews;
@@ -199,6 +198,7 @@
 		4AD865532A8D2D710012A1FF /* CoreViews */ = {
 			isa = PBXGroup;
 			children = (
+				4AD865632A8FF8CB0012A1FF /* PrincipalViews */,
 				4A4281BA2A8BF414000A11FC /* LogInviews */,
 				4AD8655F2A8E54E70012A1FF /* Utilities */,
 			);
