@@ -6,11 +6,11 @@
 //
 
 import Foundation
-
-import Foundation
+import Firebase
+import FirebaseStorage
 import FirebaseFirestore
+import FirebaseStorageCombineSwift
 import FirebaseFirestoreSwift
-import CoreLocation
 //
 //struct DBMarker {
 //    let markerId: String
@@ -45,7 +45,24 @@ struct MarkerManagerData {
         self.date = marker.date
     }
 }
-
-func createNewMarkerManager(){
+final class StorageManager{
+    static let shared = StorageManager()
+    private init(){}
+    private let storage = Storage.storage().reference()
     
+    func createNewMarkerManager(){
+    }
+    
+    func saveImage(data: Data) async throws -> (path: String, name: String){
+        let meta = StorageMetadata()
+        meta.contentType = "image/jpeg"
+        let path = "\(UUID().uuidString).jpeg"
+        let returnMetaData = try await storage.child(path).putDataAsync(data, metadata: meta)
+        
+        guard let ReturnPath = returnMetaData.path, let ReturnName = returnMetaData.name else {
+            throw URLError(.badURL)
+            
+        }
+        return(ReturnPath, ReturnName)
+    }
 }

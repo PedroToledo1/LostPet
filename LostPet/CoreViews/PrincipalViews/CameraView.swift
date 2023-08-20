@@ -6,10 +6,14 @@
 //
 
 import SwiftUI
+import PhotosUI
+
 
 struct CameraView: View {
+    @State private var photoselected : PhotosPickerItem? = nil
     var body: some View {
-        Button
+        PhotosPicker(selection: $photoselected, matching: .images, photoLibrary: .shared(), label:{ Text("Select a photo")})
+
     }
 }
 

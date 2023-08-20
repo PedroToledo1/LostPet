@@ -36,6 +36,8 @@
 		4AD8656D2A8FFD3D0012A1FF /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD8656C2A8FFD3D0012A1FF /* CameraView.swift */; };
 		4AD8656F2A91B8120012A1FF /* UserLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD8656E2A91B8120012A1FF /* UserLocationManager.swift */; };
 		4AD865732A9291110012A1FF /* MarkerManagerDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD865722A9291110012A1FF /* MarkerManagerDB.swift */; };
+		4AD865752A9296B20012A1FF /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD865742A9296B20012A1FF /* FirebaseStorage */; };
+		4AD865772A9296B80012A1FF /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD865762A9296B80012A1FF /* FirebaseStorageCombine-Community */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +74,8 @@
 			files = (
 				4A4281B02A8B0E2A000A11FC /* FirebaseAnalyticsSwift in Frameworks */,
 				4AD865522A8D2CCF0012A1FF /* FirebaseFirestoreCombine-Community in Frameworks */,
+				4AD865772A9296B80012A1FF /* FirebaseStorageCombine-Community in Frameworks */,
+				4AD865752A9296B20012A1FF /* FirebaseStorage in Frameworks */,
 				4A4281B72A8BF3A3000A11FC /* FirebaseAuth in Frameworks */,
 				4A4281C72A8C1FDE000A11FC /* GoogleSignInSwift in Frameworks */,
 				4A4281AE2A8B0E2A000A11FC /* FirebaseAnalytics in Frameworks */,
@@ -292,6 +296,8 @@
 				4A4281C42A8C1FDE000A11FC /* GoogleSignIn */,
 				4A4281C62A8C1FDE000A11FC /* GoogleSignInSwift */,
 				4AD865512A8D2CCF0012A1FF /* FirebaseFirestoreCombine-Community */,
+				4AD865742A9296B20012A1FF /* FirebaseStorage */,
+				4AD865762A9296B80012A1FF /* FirebaseStorageCombine-Community */,
 			);
 			productName = LostPet;
 			productReference = 4A0A2C9B2A8ABABE004BB1AE /* LostPet.app */;
@@ -636,6 +642,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4A4281AC2A8B0E2A000A11FC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseFirestoreCombine-Community";
+		};
+		4AD865742A9296B20012A1FF /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4A4281AC2A8B0E2A000A11FC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		4AD865762A9296B80012A1FF /* FirebaseStorageCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4A4281AC2A8B0E2A000A11FC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseStorageCombine-Community";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
