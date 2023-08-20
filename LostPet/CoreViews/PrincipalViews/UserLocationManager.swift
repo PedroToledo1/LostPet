@@ -8,19 +8,20 @@
 import Foundation
 import MapKit
 
-final class LocationViewModel: ObservableObject{
+final class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     var locationManager: CLLocationManager?
     
     func checkIfLocationServicesIsEnable(){
         if CLLocationManager.locationServicesEnabled() {
             locationManager = CLLocationManager()
-            locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+            checkLocationAuthorization()
+            locationManager!.delegate = self
         }else{
             print("La ubicaion gato, dale activala")
         }
     }
     
-    func checkLocationAuthorization(){
+    private func checkLocationAuthorization(){
         guard let locationManager = locationManager else {return}
         switch locationManager.authorizationStatus{
             
@@ -35,5 +36,9 @@ final class LocationViewModel: ObservableObject{
         @unknown default:
             break
         }
+    }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        checkLocationAuthorization()
     }
 }

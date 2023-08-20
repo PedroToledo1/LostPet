@@ -15,6 +15,9 @@ struct MapView: View {
     var body: some View {
         Map(coordinateRegion: $region, showsUserLocation: true)
             .ignoresSafeArea()
+            .onAppear{
+                userLocation.
+            }
     }
 }
 
