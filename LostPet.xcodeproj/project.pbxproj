@@ -37,6 +37,7 @@
 		4AD8656F2A91B8120012A1FF /* UserLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD8656E2A91B8120012A1FF /* UserLocationManager.swift */; };
 		4AD865752A9296B20012A1FF /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD865742A9296B20012A1FF /* FirebaseStorage */; };
 		4AD865772A9296B80012A1FF /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD865762A9296B80012A1FF /* FirebaseStorageCombine-Community */; };
+		4AD8657F2A93E1E60012A1FF /* MarkersMapsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD8657E2A93E1E60012A1FF /* MarkersMapsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		4AD8656A2A8FFD1E0012A1FF /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		4AD8656C2A8FFD3D0012A1FF /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		4AD8656E2A91B8120012A1FF /* UserLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationManager.swift; sourceTree = "<group>"; };
+		4AD8657E2A93E1E60012A1FF /* MarkersMapsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkersMapsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				4AD8656E2A91B8120012A1FF /* UserLocationManager.swift */,
+				4AD8657E2A93E1E60012A1FF /* MarkersMapsView.swift */,
 			);
 			path = MapManager;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				4AD865572A8D2DE30012A1FF /* ProfileViews.swift in Sources */,
 				4A4281BD2A8BF530000A11FC /* AuthenticationManager.swift in Sources */,
 				4A4281CE2A8C2D10000A11FC /* GoogleHelper.swift in Sources */,
+				4AD8657F2A93E1E60012A1FF /* MarkersMapsView.swift in Sources */,
 				4A4281CB2A8C2249000A11FC /* Utilities.swift in Sources */,
 				4AD865662A8FF9140012A1FF /* MapView.swift in Sources */,
 				4A0A2C9F2A8ABABE004BB1AE /* LostPetApp.swift in Sources */,

@@ -28,9 +28,11 @@ final class StorageManager: ObservableObject {
     static let shared = StorageManager()
     init(){}
     private let storage = Storage.storage().reference()
-    
-    func createNewMarkerManager(){
+    private var imagesReference: StorageReference {
+        storage.child("markers")
     }
+    
+    
     
     func saveImage(data: Data) async throws -> (path: String, name: String){
         let meta = StorageMetadata()
@@ -38,7 +40,7 @@ final class StorageManager: ObservableObject {
         print("save image paso 1")
         let path = "\(UUID().uuidString).png"
         print(path)
-        let returnMetaData = try await storage.child(path).putDataAsync(data, metadata: meta)
+        let returnMetaData = try await imagesReference.child(path).putDataAsync(data, metadata: meta)
         print("save image parte 2")
         
         guard let ReturnPath = returnMetaData.path, let ReturnName = returnMetaData.name else {
@@ -59,5 +61,8 @@ final class StorageManager: ObservableObject {
             print(path)
             print(name)
         }
+    }
+    func getData(path: String) async throws -> Data{
+        try await imagesReference.child(path).data(maxSize: 3 * 1024 * 1024)
     }
 }
