@@ -20,9 +20,11 @@ struct CameraView: View {
             .onChange(of: photoselected, perform: { newValue in
                 if let newValue {
                     viewModel.saveMarkerImage(item: newValue)
+                    print("llego hasta aca")
                 }
             })
     }
+        
 }
 
 struct CameraView_Previews: PreviewProvider {

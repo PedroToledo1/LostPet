@@ -35,7 +35,6 @@
 		4AD8656B2A8FFD1E0012A1FF /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD8656A2A8FFD1E0012A1FF /* NavigationBar.swift */; };
 		4AD8656D2A8FFD3D0012A1FF /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD8656C2A8FFD3D0012A1FF /* CameraView.swift */; };
 		4AD8656F2A91B8120012A1FF /* UserLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD8656E2A91B8120012A1FF /* UserLocationManager.swift */; };
-		4AD865732A9291110012A1FF /* MarkerManagerDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD865722A9291110012A1FF /* MarkerManagerDB.swift */; };
 		4AD865752A9296B20012A1FF /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD865742A9296B20012A1FF /* FirebaseStorage */; };
 		4AD865772A9296B80012A1FF /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD865762A9296B80012A1FF /* FirebaseStorageCombine-Community */; };
 /* End PBXBuildFile section */
@@ -64,7 +63,6 @@
 		4AD8656A2A8FFD1E0012A1FF /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		4AD8656C2A8FFD3D0012A1FF /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		4AD8656E2A91B8120012A1FF /* UserLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationManager.swift; sourceTree = "<group>"; };
-		4AD865722A9291110012A1FF /* MarkerManagerDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerManagerDB.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,7 +235,6 @@
 			isa = PBXGroup;
 			children = (
 				4AD8655D2A8E4CED0012A1FF /* MarkerManager.swift */,
-				4AD865722A9291110012A1FF /* MarkerManagerDB.swift */,
 			);
 			path = MarkersUtilities;
 			sourceTree = "<group>";
@@ -365,7 +362,6 @@
 				4AD8656D2A8FFD3D0012A1FF /* CameraView.swift in Sources */,
 				4AD865232A8C69750012A1FF /* AppleHelper.swift in Sources */,
 				4AD865572A8D2DE30012A1FF /* ProfileViews.swift in Sources */,
-				4AD865732A9291110012A1FF /* MarkerManagerDB.swift in Sources */,
 				4A4281BD2A8BF530000A11FC /* AuthenticationManager.swift in Sources */,
 				4A4281CE2A8C2D10000A11FC /* GoogleHelper.swift in Sources */,
 				4A4281CB2A8C2249000A11FC /* Utilities.swift in Sources */,
