@@ -8,21 +8,35 @@
 import SwiftUI
 import PhotosUI
 
-
 struct CameraView: View {
     
     @StateObject var viewModel = StorageManager()
     
-    @State private var photoselected : PhotosPickerItem? = nil
+    @State var photoselected : PhotosPickerItem! = nil
     
     var body: some View {
-        PhotosPicker(selection: $photoselected, matching: .images, photoLibrary: .shared(), label:{ Text("Select a photo")})
-            .onChange(of: photoselected, perform: { newValue in
-                if let newValue {
-                    viewModel.saveMarkerImage(item: newValue)
-                    print("llego hasta aca")
+        VStack{
+            Spacer()
+            ZStack{
+                if photoselected != nil {
+                    
                 }
+            }
+            PhotosPicker(selection: $photoselected, matching: .images ,photoLibrary: .shared(),
+                         label:{Text("Open library")})
+            
+            Spacer()
+            Button(action: {
+                if photoselected == nil {
+                    
+                }else{
+                    viewModel.saveMarkerImage(item: photoselected!)
+                }
+            }, label: {
+                Text("Upload Photo")
             })
+            Spacer()
+        }
     }
         
 }
