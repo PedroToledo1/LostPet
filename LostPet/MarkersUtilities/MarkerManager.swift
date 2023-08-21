@@ -4,35 +4,14 @@
 //
 //  Created by Pedro Toledo on 17/8/23.
 //
-
+import SwiftUI
 import Foundation
 import Firebase
 import FirebaseStorage
 import FirebaseFirestore
 import FirebaseStorageCombineSwift
 import FirebaseFirestoreSwift
-//
-//struct DBMarker {
-//    let markerId: String
-//    let userId: String
-//    let photo_url: String
-//    let coordinate: CLLocationCoordinate2D
-//    let date_created : Date
-//
-//}
-//
-//final class markerManager{
-//
-//    func createNewMarker(marker_id: String){
-//        var markerData: [String: Any] = [
-//            "marker_id" : markerId
-//        ]
-//        Firestore.firestore().collection("markers").document(marker_id).setData(<#T##documentData: [String : Any]##[String : Any]#>, merge: false)
-//    }
-//}
-//
-//
-
+import PhotosUI
 
 struct MarkerManagerData {
     let uid: String
@@ -45,9 +24,11 @@ struct MarkerManagerData {
         self.date = marker.date
     }
 }
-final class StorageManager{
+
+final class StorageManager: ObservableObject {
+    
     static let shared = StorageManager()
-    private init(){}
+    init(){}
     private let storage = Storage.storage().reference()
     
     func createNewMarkerManager(){
@@ -55,8 +36,8 @@ final class StorageManager{
     
     func saveImage(data: Data) async throws -> (path: String, name: String){
         let meta = StorageMetadata()
-        meta.contentType = "image/jpeg"
-        let path = "\(UUID().uuidString).jpeg"
+        meta.contentType = "image/png"
+        let path = "\(UUID().uuidString).png"
         let returnMetaData = try await storage.child(path).putDataAsync(data, metadata: meta)
         
         guard let ReturnPath = returnMetaData.path, let ReturnName = returnMetaData.name else {
@@ -64,5 +45,15 @@ final class StorageManager{
             
         }
         return(ReturnPath, ReturnName)
+    }
+    
+    func saveMarkerImage(item: PhotosPickerItem) {
+        Task {
+            guard let data = try await item.loadTransferable(type: Data.self) else { return }
+            let (path, name) = try await StorageManager.shared.saveImage(data: data)
+            print("success")
+            print(path)
+            print(name)
+        }
     }
 }
