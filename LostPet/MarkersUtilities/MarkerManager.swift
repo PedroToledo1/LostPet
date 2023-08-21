@@ -13,26 +13,58 @@ import FirebaseStorageCombineSwift
 import FirebaseFirestoreSwift
 import PhotosUI
 
-struct MarkerManagerData {
+
+
+struct MarkerManagerData: Codable {
+    let markerID: String
     let date: Date
     let photomarker: String
+    let coordinates: GeoPoint
     
     init(marker: MarkerManagerData) {
+        self.markerID = marker.markerID
         self.photomarker = marker.photomarker
         self.date = marker.date
+        self.coordinates = marker.coordinates
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case markerID = "marker_id"
+        case coordinates = "coordinates"
+        case photomarker = "photomarker"
+        case date = "date"
+    }
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.markerID, forKey: .markerID)
+        try container.encodeIfPresent(self.coordinates, forKey: .coordinates)
+        try container.encodeIfPresent(self.photomarker, forKey: .photomarker)
+        try container.encodeIfPresent(self.date, forKey: .date)
+    }
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.markerID = try container.decode(String.self, forKey: .markerID)
+        self.coordinates = try container.decodeIfPresent(GeoPoint.self, forKey: .coordinates)!
+        self.photomarker = try container.decodeIfPresent(String.self, forKey: .photomarker)!
+        self.date = try container.decodeIfPresent(Date.self, forKey: .date)!
     }
 }
 
-final class StorageManager: ObservableObject {
+final class StorageManager: ObservableObject, Identifiable {
+    
+    let markerCollection = Firestore.firestore().collection("markers")
     
     static let shared = StorageManager()
     init(){}
     private let storage = Storage.storage().reference()
+    
+    
+    
+    //: MARK: Funciones para el guardado de imagenes y obtencion del path
+    
     private var imagesReference: StorageReference {
         storage.child("markers")
     }
-    
-    
     
     func saveImage(data: Data) async throws -> (path: String, name: String){
         let meta = StorageMetadata()
@@ -62,7 +94,28 @@ final class StorageManager: ObservableObject {
             print(name)
         }
     }
+    
+    func appendMarker(path: String, photourl: String, geopoint: CLLocationCoordinate2D){
+        
+    }
+    
     func getData(path: String) async throws -> Data{
         try await imagesReference.child(path).data(maxSize: 3 * 1024 * 1024)
     }
+    
+    //: MARK: agregar marcadores
+    
+    private func markerDocument(markerID: String) -> DocumentReference {
+        markerCollection.document(markerID)
+    }
+    func newMarker(marcador: MarkerManagerData)async throws{
+        try markerCollection.document(marcador.markerID).setData(from: marcador, merge: false)
+    }
+    
+    //: MARK: marcador especifico
+    func getmarker(marcador: String) async throws -> MarkerManagerData{
+        try await markerDocument(markerID: marcador).getDocument(as: MarkerManagerData.self)
+    }
+    
+
 }

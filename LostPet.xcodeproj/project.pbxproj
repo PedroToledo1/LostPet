@@ -255,9 +255,9 @@
 		4AD865642A8FF8E30012A1FF /* AuthViews */ = {
 			isa = PBXGroup;
 			children = (
+				4A4281B82A8BF40F000A11FC /* AuthView.swift */,
 				4A4281BC2A8BF530000A11FC /* AuthenticationManager.swift */,
 				4AD8655B2A8D3A540012A1FF /* AuthenticationViewModel.swift */,
-				4A4281B82A8BF40F000A11FC /* AuthView.swift */,
 			);
 			path = AuthViews;
 			sourceTree = "<group>";
