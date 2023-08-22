@@ -27,7 +27,7 @@ struct MarkerManagerData: Codable {
         self.date = marker.date
         self.coordinates = marker.coordinates
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case markerID = "marker_id"
         case coordinates = "coordinates"
@@ -93,10 +93,6 @@ final class StorageManager: ObservableObject, Identifiable {
             print(path)
             print(name)
         }
-    }
-    
-    func appendMarker(path: String, photourl: String, geopoint: CLLocationCoordinate2D){
-        
     }
     
     func getData(path: String) async throws -> Data{
