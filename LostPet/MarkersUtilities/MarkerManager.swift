@@ -18,26 +18,29 @@ struct marcadoresFinal{
     let markerId: String
     let date: Date
     let photourl: String
-    let coordinate: GeoPoint
+    let coordinatesLatitud: Double
+    let coordinatesLongitud: Double
 }
 
 
 struct MarkerManagerData: Codable {
     let markerID: String
-    let date: Date
+    let date: Timestamp
     let photomarker: String
-    let coordinates: GeoPoint
+    let coordinatesLatitud: Double
+    let coordinatesLongitud: Double
     
     init(marker: marcadoresFinal) {
         self.markerID = marker.markerId
         self.photomarker = marker.photourl
-        self.date = Date()
-        self.coordinates = marker.coordinate
+        self.date = Timestamp()
+        self.coordinatesLatitud = marker.coordinatesLatitud
+        self.coordinatesLongitud = marker.coordinatesLongitud
     }
-//
+
 //    enum CodingKeys: String, CodingKey {
-//        case markerID = "marker_id"
-//        case coordinates = "coordinates"
+//        case markerID = "markerid"
+//        case
 //        case photomarker = "photomarker"
 //        case date = "date"
 //    }
@@ -102,15 +105,14 @@ final class StorageManager: ObservableObject, Identifiable {
             print("success")
             print(path)
             print(name)
-            let marcadorsito = marcadoresFinal(markerId: UUID().uuidString, date: Date(), photourl: path, coordinate: GeoPoint(latitude: userLocation.region.center.latitude, longitude: userLocation.region.center.longitude))
+            guard let coordenadasMarker = userLocation.locationManager else{
+                throw URLError(.badURL)
+            }
+            let marcadorsito = marcadoresFinal(markerId: UUID().uuidString, date: Date(), photourl: path, coordinatesLatitud: (coordenadasMarker.location?.coordinate.latitude)!, coordinatesLongitud: (coordenadasMarker.location?.coordinate.longitude)!)
             let uno = MarkerManagerData(marker: marcadorsito)
             try await newMarker(marcador: uno)
             
         }
-    }
-    
-    func getData(path: String) async throws -> Data{
-        try await imagesReference.child(path).data(maxSize: 3 * 1024 * 1024)
     }
     
     //: MARK: agregar marcadores
@@ -123,7 +125,7 @@ final class StorageManager: ObservableObject, Identifiable {
     }
     
     //: MARK: marcador especifico
-    func getmarker(marcador: String) async throws -> MarkerManagerData {
+    func getmarkerImage(marcador: String) async throws -> MarkerManagerData {
         try await markerDocument(markerID: marcador).getDocument(as: MarkerManagerData.self)
     }
     

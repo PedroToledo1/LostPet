@@ -244,8 +244,8 @@
 		4AD865632A8FF8CB0012A1FF /* PrincipalViews */ = {
 			isa = PBXGroup;
 			children = (
-				4AD865652A8FF9140012A1FF /* MapView.swift */,
 				4AD8656A2A8FFD1E0012A1FF /* NavigationBar.swift */,
+				4AD865652A8FF9140012A1FF /* MapView.swift */,
 				4AD8656C2A8FFD3D0012A1FF /* CameraView.swift */,
 				4AD865562A8D2DE30012A1FF /* ProfileViews.swift */,
 			);
@@ -265,10 +265,26 @@
 		4AD865672A8FF92C0012A1FF /* MapManager */ = {
 			isa = PBXGroup;
 			children = (
-				4AD8656E2A91B8120012A1FF /* UserLocationManager.swift */,
-				4AD8657E2A93E1E60012A1FF /* MarkersMapsView.swift */,
+				4AD865802A95190E0012A1FF /* Views */,
+				4AD865812A9519150012A1FF /* Managers */,
 			);
 			path = MapManager;
+			sourceTree = "<group>";
+		};
+		4AD865802A95190E0012A1FF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4AD8657E2A93E1E60012A1FF /* MarkersMapsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4AD865812A9519150012A1FF /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				4AD8656E2A91B8120012A1FF /* UserLocationManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

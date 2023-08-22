@@ -6,8 +6,16 @@
 //
 
 import SwiftUI
+import CoreLocation
+
+
+
+
 
 struct MarkersMapsView: View {
+    
+    //@State var image: UIImage
+    
     var body: some View {
         NavigationLink(destination: {
             
@@ -21,6 +29,7 @@ struct MarkersMapsView: View {
                     .foregroundColor(.white)
                     .frame(width: 20)
                     
+               // Image(uiImage: image)
                 Image(systemName: "gear")
                     .frame(width: 18)
                     .shadow(color: .black, radius: 2)
@@ -36,3 +45,5 @@ struct MarkersMapsView_Previews: PreviewProvider {
         MarkersMapsView()
     }
 }
+                        
+

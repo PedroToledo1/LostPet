@@ -41,6 +41,9 @@ final class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
         }
         
     }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        region.center = locations.last!.coordinate
+    }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         checkLocationAuthorization()
