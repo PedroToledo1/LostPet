@@ -14,6 +14,13 @@ import FirebaseFirestoreSwift
 import PhotosUI
 
 
+struct marcadoresFinal{
+    let markerId: String
+    let date: Date
+    let photourl: String
+    let coordinate: GeoPoint
+}
+
 
 struct MarkerManagerData: Codable {
     let markerID: String
@@ -21,36 +28,39 @@ struct MarkerManagerData: Codable {
     let photomarker: String
     let coordinates: GeoPoint
     
-    init(marker: MarkerManagerData) {
-        self.markerID = marker.markerID
-        self.photomarker = marker.photomarker
-        self.date = marker.date
-        self.coordinates = marker.coordinates
+    init(marker: marcadoresFinal) {
+        self.markerID = marker.markerId
+        self.photomarker = marker.photourl
+        self.date = Date()
+        self.coordinates = marker.coordinate
     }
-
-    enum CodingKeys: String, CodingKey {
-        case markerID = "marker_id"
-        case coordinates = "coordinates"
-        case photomarker = "photomarker"
-        case date = "date"
-    }
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.markerID, forKey: .markerID)
-        try container.encodeIfPresent(self.coordinates, forKey: .coordinates)
-        try container.encodeIfPresent(self.photomarker, forKey: .photomarker)
-        try container.encodeIfPresent(self.date, forKey: .date)
-    }
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.markerID = try container.decode(String.self, forKey: .markerID)
-        self.coordinates = try container.decodeIfPresent(GeoPoint.self, forKey: .coordinates)!
-        self.photomarker = try container.decodeIfPresent(String.self, forKey: .photomarker)!
-        self.date = try container.decodeIfPresent(Date.self, forKey: .date)!
-    }
+//
+//    enum CodingKeys: String, CodingKey {
+//        case markerID = "marker_id"
+//        case coordinates = "coordinates"
+//        case photomarker = "photomarker"
+//        case date = "date"
+//    }
+//    func encode(to encoder: Encoder) throws {
+//        var container = encoder.container(keyedBy: CodingKeys.self)
+//        try container.encode(self.markerID, forKey: .markerID)
+//        try container.encodeIfPresent(self.coordinates, forKey: .coordinates)
+//        try container.encodeIfPresent(self.photomarker, forKey: .photomarker)
+//        try container.encodeIfPresent(self.date, forKey: .date)
+//    }
+//    init(from decoder: Decoder) throws {
+//        let container = try decoder.container(keyedBy: CodingKeys.self)
+//        self.markerID = try container.decode(String.self, forKey: .markerID)
+//        self.coordinates = try container.decodeIfPresent(GeoPoint.self, forKey: .coordinates)!
+//        self.photomarker = try container.decodeIfPresent(String.self, forKey: .photomarker)!
+//        self.date = try container.decodeIfPresent(Date.self, forKey: .date)!
+//    }
 }
 
 final class StorageManager: ObservableObject, Identifiable {
+    
+    
+    @StateObject var userLocation = LocationViewModel()
     
     let markerCollection = Firestore.firestore().collection("markers")
     
@@ -92,6 +102,10 @@ final class StorageManager: ObservableObject, Identifiable {
             print("success")
             print(path)
             print(name)
+            let marcadorsito = marcadoresFinal(markerId: UUID().uuidString, date: Date(), photourl: path, coordinate: GeoPoint(latitude: userLocation.region.center.latitude, longitude: userLocation.region.center.longitude))
+            let uno = MarkerManagerData(marker: marcadorsito)
+            try await newMarker(marcador: uno)
+            
         }
     }
     
@@ -109,9 +123,10 @@ final class StorageManager: ObservableObject, Identifiable {
     }
     
     //: MARK: marcador especifico
-    func getmarker(marcador: String) async throws -> MarkerManagerData{
+    func getmarker(marcador: String) async throws -> MarkerManagerData {
         try await markerDocument(markerID: marcador).getDocument(as: MarkerManagerData.self)
     }
     
-
+    
+    
 }

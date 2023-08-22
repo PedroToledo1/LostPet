@@ -7,11 +7,12 @@
 
 import SwiftUI
 import PhotosUI
+import Firebase
 
 struct CameraView: View {
     
+    @StateObject private var userLocation = LocationViewModel()
     @StateObject var viewModel = StorageManager()
-    
     @State var photoselected : PhotosPickerItem! = nil
     
     var body: some View {
@@ -31,6 +32,7 @@ struct CameraView: View {
                     
                 }else{
                     viewModel.saveMarkerImage(item: photoselected!)
+                    
                 }
             }, label: {
                 Text("Upload Photo")

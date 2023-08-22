@@ -62,4 +62,6 @@ final class UserManager {
     func getUser(UserID: String) async throws -> DBUser{
         try await userDocument(userID: UserID).getDocument(as: DBUser.self)
     }
+    
+    
 }
