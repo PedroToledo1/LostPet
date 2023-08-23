@@ -8,11 +8,11 @@
 import Foundation
 import MapKit
 
-
 final class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate{
     @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.331516, longitude: -121.891054), span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
     
-    var locationManager: CLLocationManager?
+    
+    var locationManager: CLLocationManager!
     
     func checkIfLocationServicesIsEnable(){
         if CLLocationManager.locationServicesEnabled() {
@@ -43,10 +43,16 @@ final class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         region.center = locations.last!.coordinate
+        print("la ubicacion \(region.center)")
+        
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         checkLocationAuthorization()
+    }
+    
+    func actualLocalization(){
+        
     }
     
     

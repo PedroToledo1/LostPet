@@ -12,52 +12,50 @@ import FirebaseFirestore
 import FirebaseStorageCombineSwift
 import FirebaseFirestoreSwift
 import PhotosUI
+import MapKit
 
 
 struct marcadoresFinal{
     let markerId: String
     let date: Date
     let photourl: String
-    let coordinatesLatitud: Double
-    let coordinatesLongitud: Double
+    let coordinate: GeoPoint
 }
 
 
 struct MarkerManagerData: Codable {
     let markerID: String
-    let date: Timestamp
+    let date: Date
     let photomarker: String
-    let coordinatesLatitud: Double
-    let coordinatesLongitud: Double
+    let coordinates: GeoPoint
     
     init(marker: marcadoresFinal) {
         self.markerID = marker.markerId
         self.photomarker = marker.photourl
-        self.date = Timestamp()
-        self.coordinatesLatitud = marker.coordinatesLatitud
-        self.coordinatesLongitud = marker.coordinatesLongitud
+        self.date = Date()
+        self.coordinates = marker.coordinate
     }
 
-//    enum CodingKeys: String, CodingKey {
-//        case markerID = "markerid"
-//        case
-//        case photomarker = "photomarker"
-//        case date = "date"
-//    }
-//    func encode(to encoder: Encoder) throws {
-//        var container = encoder.container(keyedBy: CodingKeys.self)
-//        try container.encode(self.markerID, forKey: .markerID)
-//        try container.encodeIfPresent(self.coordinates, forKey: .coordinates)
-//        try container.encodeIfPresent(self.photomarker, forKey: .photomarker)
-//        try container.encodeIfPresent(self.date, forKey: .date)
-//    }
-//    init(from decoder: Decoder) throws {
-//        let container = try decoder.container(keyedBy: CodingKeys.self)
-//        self.markerID = try container.decode(String.self, forKey: .markerID)
-//        self.coordinates = try container.decodeIfPresent(GeoPoint.self, forKey: .coordinates)!
-//        self.photomarker = try container.decodeIfPresent(String.self, forKey: .photomarker)!
-//        self.date = try container.decodeIfPresent(Date.self, forKey: .date)!
-//    }
+    enum CodingKeys: String, CodingKey {
+        case markerID = "markerid"
+        case coordinates = "coordinates"
+        case photomarker = "photomarker"
+        case date = "date"
+    }
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.markerID, forKey: .markerID)
+        try container.encodeIfPresent(self.coordinates, forKey: .coordinates)
+        try container.encodeIfPresent(self.photomarker, forKey: .photomarker)
+        try container.encodeIfPresent(self.date, forKey: .date)
+    }
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.markerID = try container.decode(String.self, forKey: .markerID)
+        self.coordinates = try container.decodeIfPresent(GeoPoint.self, forKey: .coordinates)!
+        self.photomarker = try container.decodeIfPresent(String.self, forKey: .photomarker)!
+        self.date = try container.decodeIfPresent(Date.self, forKey: .date)!
+    }
 }
 
 final class StorageManager: ObservableObject, Identifiable {
@@ -97,7 +95,7 @@ final class StorageManager: ObservableObject, Identifiable {
         return(ReturnPath, ReturnName)
     }
     
-    func saveMarkerImage(item: PhotosPickerItem) {
+    func saveMarkerImage(item: PhotosPickerItem, lat: Double, lon: Double) {
         Task {
             guard let data = try await item.loadTransferable(type: Data.self) else { return }
             print("savemarker image parte 1")
@@ -105,12 +103,11 @@ final class StorageManager: ObservableObject, Identifiable {
             print("success")
             print(path)
             print(name)
-            guard let coordenadasMarker = userLocation.locationManager else{
-                throw URLError(.badURL)
-            }
-            let marcadorsito = marcadoresFinal(markerId: UUID().uuidString, date: Date(), photourl: path, coordinatesLatitud: (coordenadasMarker.location?.coordinate.latitude)!, coordinatesLongitud: (coordenadasMarker.location?.coordinate.longitude)!)
+            
+            let marcadorsito = marcadoresFinal(markerId: UUID().uuidString, date: Date(), photourl: path, coordinate: GeoPoint(latitude: lat, longitude: lon))
             let uno = MarkerManagerData(marker: marcadorsito)
             try await newMarker(marcador: uno)
+            print(uno)
             
         }
     }

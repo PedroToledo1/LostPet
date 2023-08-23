@@ -18,6 +18,7 @@ var body: some View {
             .accentColor(Color(.systemGreen))
             .onAppear{
                 userLocation.checkIfLocationServicesIsEnable()
+                print($userLocation.region)
         }
             
     }
