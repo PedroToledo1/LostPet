@@ -32,7 +32,7 @@ struct CameraView: View {
                     
                 }else{
                     userLocation.checkIfLocationServicesIsEnable()
-                    viewModel.saveMarkerImage(item: photoselected, lat: $userLocation.region.center.latitude, lon: $userLocation.region.center.longitude )
+                    viewModel.saveMarkerImage(item: photoselected, lat: userLocation.latitud, lon: userLocation.longitud)
                     
                 }
             }, label: {

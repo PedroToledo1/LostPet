@@ -91,7 +91,6 @@
 		4A0A2C922A8ABABD004BB1AE = {
 			isa = PBXGroup;
 			children = (
-				4AEFFC602A96C74300A0ACDA /* Packages */,
 				4A0A2C9D2A8ABABE004BB1AE /* LostPet */,
 				4A0A2C9C2A8ABABE004BB1AE /* Products */,
 				4A4281B52A8BF3A3000A11FC /* Frameworks */,
@@ -286,13 +285,6 @@
 				4AD8656E2A91B8120012A1FF /* UserLocationManager.swift */,
 			);
 			path = Managers;
-			sourceTree = "<group>";
-		};
-		4AEFFC602A96C74300A0ACDA /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -95,7 +95,7 @@ final class StorageManager: ObservableObject, Identifiable {
         return(ReturnPath, ReturnName)
     }
     
-    func saveMarkerImage(item: PhotosPickerItem, lat: CLLocationCoordinate2D, lon: CLLocationCoordinate2D) {
+    func saveMarkerImage(item: PhotosPickerItem, lat: Double, lon: Double) {
         Task {
             guard let data = try await item.loadTransferable(type: Data.self) else { return }
             print("savemarker image parte 1")
@@ -103,7 +103,7 @@ final class StorageManager: ObservableObject, Identifiable {
             print("success")
             print(path)
             print(name)
-            let hash = GFUtils.geoHash(forLocation: $userLocation.region.center)
+            
             let marcadorsito = marcadoresFinal(markerId: UUID().uuidString, date: Date(), photourl: path, coordinate: GeoPoint(latitude: lat, longitude: lon))
             let uno = MarkerManagerData(marker: marcadorsito)
             try await newMarker(marcador: uno)
