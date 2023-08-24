@@ -25,6 +25,8 @@
 		4A4281C72A8C1FDE000A11FC /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4A4281C62A8C1FDE000A11FC /* GoogleSignInSwift */; };
 		4A4281CB2A8C2249000A11FC /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4281CA2A8C2249000A11FC /* Utilities.swift */; };
 		4A4281CE2A8C2D10000A11FC /* GoogleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4281CD2A8C2D10000A11FC /* GoogleHelper.swift */; };
+		4AD0E7CB2A96EE1D005A8507 /* GeoFire in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD0E7CA2A96EE1D005A8507 /* GeoFire */; };
+		4AD0E7CD2A96EE1D005A8507 /* GeoFireUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD0E7CC2A96EE1D005A8507 /* GeoFireUtils */; };
 		4AD865232A8C69750012A1FF /* AppleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD865222A8C69750012A1FF /* AppleHelper.swift */; };
 		4AD865522A8D2CCF0012A1FF /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD865512A8D2CCF0012A1FF /* FirebaseFirestoreCombine-Community */; };
 		4AD865572A8D2DE30012A1FF /* ProfileViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD865562A8D2DE30012A1FF /* ProfileViews.swift */; };
@@ -54,6 +56,7 @@
 		4A4281C82A8C2048000A11FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4A4281CA2A8C2249000A11FC /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		4A4281CD2A8C2D10000A11FC /* GoogleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleHelper.swift; sourceTree = "<group>"; };
+		4AD0E7C92A96EE0A005A8507 /* geofire-objc-5.0.0 */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "geofire-objc-5.0.0"; path = "../../../Downloads/geofire-objc-5.0.0"; sourceTree = "<group>"; };
 		4AD865212A8C5BC60012A1FF /* LostPet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LostPet.entitlements; sourceTree = "<group>"; };
 		4AD865222A8C69750012A1FF /* AppleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleHelper.swift; sourceTree = "<group>"; };
 		4AD865562A8D2DE30012A1FF /* ProfileViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViews.swift; sourceTree = "<group>"; };
@@ -77,10 +80,12 @@
 				4AD865772A9296B80012A1FF /* FirebaseStorageCombine-Community in Frameworks */,
 				4AD865752A9296B20012A1FF /* FirebaseStorage in Frameworks */,
 				4A4281B72A8BF3A3000A11FC /* FirebaseAuth in Frameworks */,
+				4AD0E7CB2A96EE1D005A8507 /* GeoFire in Frameworks */,
 				4A4281C72A8C1FDE000A11FC /* GoogleSignInSwift in Frameworks */,
 				4A4281AE2A8B0E2A000A11FC /* FirebaseAnalytics in Frameworks */,
 				4A4281B22A8B0E2A000A11FC /* FirebaseFirestore in Frameworks */,
 				4A4281B42A8B0E2A000A11FC /* FirebaseFirestoreSwift in Frameworks */,
+				4AD0E7CD2A96EE1D005A8507 /* GeoFireUtils in Frameworks */,
 				4A4281C52A8C1FDE000A11FC /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -136,6 +141,7 @@
 		4A0A2CB02A8AD654004BB1AE /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				4AD0E7C82A96EE0A005A8507 /* Packages */,
 			);
 			name = Packages;
 			path = ..;
@@ -189,6 +195,14 @@
 				4A4281CD2A8C2D10000A11FC /* GoogleHelper.swift */,
 			);
 			path = GoogleHelper;
+			sourceTree = "<group>";
+		};
+		4AD0E7C82A96EE0A005A8507 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				4AD0E7C92A96EE0A005A8507 /* geofire-objc-5.0.0 */,
+			);
+			name = Packages;
 			sourceTree = "<group>";
 		};
 		4AD865242A8C697A0012A1FF /* AppleHelper */ = {
@@ -314,6 +328,8 @@
 				4AD865512A8D2CCF0012A1FF /* FirebaseFirestoreCombine-Community */,
 				4AD865742A9296B20012A1FF /* FirebaseStorage */,
 				4AD865762A9296B80012A1FF /* FirebaseStorageCombine-Community */,
+				4AD0E7CA2A96EE1D005A8507 /* GeoFire */,
+				4AD0E7CC2A96EE1D005A8507 /* GeoFireUtils */,
 			);
 			productName = LostPet;
 			productReference = 4A0A2C9B2A8ABABE004BB1AE /* LostPet.app */;
@@ -653,6 +669,14 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4A4281C32A8C1FDE000A11FC /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		4AD0E7CA2A96EE1D005A8507 /* GeoFire */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GeoFire;
+		};
+		4AD0E7CC2A96EE1D005A8507 /* GeoFireUtils */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GeoFireUtils;
 		};
 		4AD865512A8D2CCF0012A1FF /* FirebaseFirestoreCombine-Community */ = {
 			isa = XCSwiftPackageProductDependency;

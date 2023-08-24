@@ -13,6 +13,8 @@ import FirebaseStorageCombineSwift
 import FirebaseFirestoreSwift
 import PhotosUI
 import MapKit
+import GeoFireUtils
+import CoreLocationUI
 
 
 struct marcadoresFinal{
@@ -95,7 +97,7 @@ final class StorageManager: ObservableObject, Identifiable {
         return(ReturnPath, ReturnName)
     }
     
-    func saveMarkerImage(item: PhotosPickerItem, lat: Double, lon: Double) {
+    func saveMarkerImage(item: PhotosPickerItem) {
         Task {
             guard let data = try await item.loadTransferable(type: Data.self) else { return }
             print("savemarker image parte 1")
@@ -103,8 +105,9 @@ final class StorageManager: ObservableObject, Identifiable {
             print("success")
             print(path)
             print(name)
-            
-            let marcadorsito = marcadoresFinal(markerId: UUID().uuidString, date: Date(), photourl: path, coordinate: GeoPoint(latitude: lat, longitude: lon))
+            let coord = CLLocationCoordinate2D(latitude: $userLocation.region.center.latitude, longitude: $userLocation.region.center.longitude)
+            let hash = GFUtils.geoHash(forLocation: coord)
+            let marcadorsito = marcadoresFinal(markerId: UUID().uuidString, date: Date(), photourl: path, coordinate: hash)
             let uno = MarkerManagerData(marker: marcadorsito)
             try await newMarker(marcador: uno)
             print(uno)
