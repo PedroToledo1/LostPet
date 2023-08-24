@@ -21,8 +21,6 @@ struct marcadoresFinal{
     let markerId: String
     let date: Date
     let photourl: String
-    let latitud: String
-    let longitud: String
     let coordinates: GeoPoint
 }
 
@@ -31,16 +29,12 @@ struct MarkerManagerData: Codable {
     let markerID: String
     let date: Date
     let photomarker: String
-    let latitud: String
-    let longitud: String
     let coordinates: GeoPoint
     
     init(marker: marcadoresFinal) {
         self.markerID = marker.markerId
         self.photomarker = marker.photourl
         self.date = Date()
-        self.latitud = marker.latitud
-        self.longitud = marker.longitud
         self.coordinates = marker.coordinates
     }
 
@@ -48,8 +42,6 @@ struct MarkerManagerData: Codable {
         case markerID = "markerid"
         case photomarker = "photomarker"
         case date = "date"
-        case latitud = "latitud"
-        case longitud = "longitud"
         case coordinates = "coordinates"
     }
     func encode(to encoder: Encoder) throws {
@@ -57,8 +49,6 @@ struct MarkerManagerData: Codable {
         try container.encode(self.markerID, forKey: .markerID)
         try container.encodeIfPresent(self.photomarker, forKey: .photomarker)
         try container.encodeIfPresent(self.date, forKey: .date)
-        try container.encodeIfPresent(self.latitud, forKey: .latitud)
-        try container.encodeIfPresent(self.longitud, forKey: .longitud)
         try container.encodeIfPresent(self.coordinates, forKey: .coordinates)
         
     }
@@ -67,8 +57,6 @@ struct MarkerManagerData: Codable {
         self.markerID = try container.decode(String.self, forKey: .markerID)
         self.photomarker = try container.decodeIfPresent(String.self, forKey: .photomarker)!
         self.date = try container.decodeIfPresent(Date.self, forKey: .date)!
-        self.latitud = try container.decodeIfPresent(String.self, forKey: .latitud)!
-        self.longitud = try container.decodeIfPresent(String.self, forKey: .longitud)!
         self.coordinates = try container.decodeIfPresent(GeoPoint.self, forKey: .coordinates)!
     }
 }
@@ -120,7 +108,7 @@ final class StorageManager: NSObject, ObservableObject, Identifiable, CLLocation
             print(path)
             print(name)
             requestAllowOnceLocationPermission()
-            let marcadorsito = marcadoresFinal(markerId: UUID().uuidString, date: Date(), photourl: path, latitud: "hash", longitud: "hashlon", coordinates: GeoPoint(latitude: (loc.center.latitude), longitude: (loc.center.longitude)))
+            let marcadorsito = marcadoresFinal(markerId: UUID().uuidString, date: Date(), photourl: path, coordinates: GeoPoint(latitude: (loc.center.latitude), longitude: (loc.center.longitude)))
             let uno = MarkerManagerData(marker: marcadorsito)
             try await newMarker(marcador: uno)
             print(uno)
