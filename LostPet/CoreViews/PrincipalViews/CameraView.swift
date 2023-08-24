@@ -10,8 +10,6 @@ import PhotosUI
 import Firebase
 
 struct CameraView: View {
-    
-    @StateObject private var userLocation = LocationViewModel()
     @StateObject var viewModel = StorageManager()
     @State var photoselected : PhotosPickerItem! = nil
     
@@ -31,9 +29,8 @@ struct CameraView: View {
                 if photoselected == nil {
                     
                 }else{
-                    userLocation.checkIfLocationServicesIsEnable()
                     viewModel.saveMarkerImage(item: photoselected)
-                    
+                    photoselected = nil
                 }
             }, label: {
                 Text("Upload Photo")
