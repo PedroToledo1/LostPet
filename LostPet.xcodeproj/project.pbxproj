@@ -117,7 +117,7 @@
 				4A4281C82A8C2048000A11FC /* Info.plist */,
 				4A0A2C9E2A8ABABE004BB1AE /* LostPetApp.swift */,
 				4A0A2CA02A8ABABE004BB1AE /* ContentView.swift */,
-				4AD865542A8D2D7E0012A1FF /* PrincipalViews */,
+				4A4281C02A8BF9A6000A11FC /* SettingViews */,
 				4AD865532A8D2D710012A1FF /* CoreViews */,
 				4AD865672A8FF92C0012A1FF /* MapManager */,
 				4AD865622A8FF7680012A1FF /* MarkersUtilities */,
@@ -221,14 +221,6 @@
 				4AD8655F2A8E54E70012A1FF /* Utilities */,
 			);
 			path = CoreViews;
-			sourceTree = "<group>";
-		};
-		4AD865542A8D2D7E0012A1FF /* PrincipalViews */ = {
-			isa = PBXGroup;
-			children = (
-				4A4281C02A8BF9A6000A11FC /* SettingViews */,
-			);
-			path = PrincipalViews;
 			sourceTree = "<group>";
 		};
 		4AD865582A8D356B0012A1FF /* Firestore */ = {

@@ -130,8 +130,10 @@ final class StorageManager: NSObject, ObservableObject, Identifiable, CLLocation
     func getmarkerImage(marcador: String) async throws -> MarkerManagerData {
         try await markerDocument(markerID: marcador).getDocument(as: MarkerManagerData.self)
     }
-    //: MARK: geolocalizacion
     
+    
+    
+    //: MARK: geolocalizacion
     
     let locationManager = CLLocationManager()
     
