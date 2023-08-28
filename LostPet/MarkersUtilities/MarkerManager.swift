@@ -19,9 +19,9 @@ import CoreLocationUI
 
 struct marcadoresFinal{
     let markerId: String
-    let date: Date
-    let photourl: String
-    let coordinates: GeoPoint
+    let date: Date!
+    let photourl: String!
+    let coordinates: GeoPoint!
 }
 
 
@@ -73,6 +73,7 @@ final class StorageManager: NSObject, ObservableObject, Identifiable, CLLocation
     override init(){
         super.init()
         locationManager.delegate = self
+        
     }
     private let storage = Storage.storage().reference()
     //: MARK: Funciones para el guardado de imagenes y obtencion del path
@@ -153,5 +154,17 @@ final class StorageManager: NSObject, ObservableObject, Identifiable, CLLocation
         print(error.localizedDescription)
     }
     
+    //:MARK: download marcadores
     
+    func getAllMarkers() async  throws -> [MarkerManagerData]{
+        let snapshot = try await markerCollection.getDocuments()
+        
+        var markers: [MarkerManagerData] = []
+        
+        for document in snapshot.documents{
+            let marker = try document.data(as: MarkerManagerData.self)
+            markers.append(marker)
+        }
+        return markers
+    }
 }

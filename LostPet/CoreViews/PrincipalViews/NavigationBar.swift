@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import _PhotosUI_SwiftUI
 
 struct NavigationBar: View {
     @Binding var showsignInView: Bool
