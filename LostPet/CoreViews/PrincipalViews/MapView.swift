@@ -31,11 +31,11 @@ var body: some View {
                 userLocation.checkIfLocationServicesIsEnable()
                 print($userLocation.region)
         }
-//            .task {
-//                try? await mark.getAllMarkers()
-//                print("succes import markers")
-//                print($mark)
-//            }
+            .task {
+                try? await mark.getAllMarkers()
+                print("succes import markers")
+                print($mark)
+            }
             
     }
     
