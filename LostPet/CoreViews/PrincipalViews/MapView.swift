@@ -24,7 +24,8 @@ struct MapView: View {
 var body: some View {
     
     Map(coordinateRegion: $userLocation.region,
-        showsUserLocation: true)
+        showsUserLocation: true
+    )
             .ignoresSafeArea()
             .accentColor(Color(.systemGreen))
             .onAppear{
@@ -35,8 +36,8 @@ var body: some View {
                 try? await mark.getAllMarkers()
                 print("succes import markers")
                 print($mark)
+                
             }
-            
     }
     
 }
