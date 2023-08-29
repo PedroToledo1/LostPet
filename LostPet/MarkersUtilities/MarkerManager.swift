@@ -17,52 +17,62 @@ import GeoFireUtils
 import CoreLocationUI
 
 
-struct marcadoresFinal{
+struct marcadoresFinal: Encodable, Decodable, Decoder{
+    
     let markerId: String
     let date: Date!
     let photourl: String!
     let coordinates: GeoPoint?
     
-}
-struct MarkerManagerData: Codable {
-    let markerID: String
-    let date: Date
-    let photomarker: String
-    let coordinates: GeoPoint?
     
-    init(marker: marcadoresFinal) {
-        self.markerID = marker.markerId
-        self.photomarker = marker.photourl
-        self.date = Date()
-        self.coordinates = marker.coordinates
+    enum CodingKeys: String, CodingKey {
+        case markerId = "markerid"
+        case photourl = "photomarker"
+        case date = "date"
+        case coordinates = "coordinates"
     }
+    
+    init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            self.markerId = try container.decode(String.self, forKey: .markerId)
+            self.photourl = try container.decodeIfPresent(String.self, forKey: .photourl)!
+            self.date = try container.decodeIfPresent(Date.self, forKey: .date)!
+            self.coordinates = try container.decodeIfPresent(GeoPoint.self, forKey: .coordinates)
+        }
+    init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            self.markerId = try container.decode(String.self, forKey: .markerId)
+            self.photourl = try container.decodeIfPresent(String.self, forKey: .photourl)!
+            self.date = try container.decodeIfPresent(Date.self, forKey: .date)!
+            self.coordinates = try container.decodeIfPresent(GeoPoint.self, forKey: .coordinates)
+        }
+}
+//struct MarkerManagerData: Codable {
+//    let markerID: String
+//    let date: Date
+//    let photomarker: String
+//    let coordinates: GeoPoint?
+//
+//    init(marker: marcadoresFinal) {
+//        self.markerID = marker.markerId
+//        self.photomarker = marker.photourl
+//        self.date = Date()
+//        self.coordinates = marker.coordinates
+//    }
     
 
     /** The keys in a GeoPoint. Must match the properties of CodableGeoPoint. */
     
-    
-    enum CodingKeys: String, CodingKey {
-        case markerID = "markerid"
-        case photomarker = "photomarker"
-        case date = "date"
-        case coordinates = "coordinates"
-    }
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.markerID, forKey: .markerID)
-        try container.encodeIfPresent(self.photomarker, forKey: .photomarker)
-        try container.encodeIfPresent(self.date, forKey: .date)
-        try container.encodeIfPresent(self.coordinates, forKey: .coordinates)
-        
-    }
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.markerID = try container.decode(String.self, forKey: .markerID)
-        self.photomarker = try container.decodeIfPresent(String.self, forKey: .photomarker)!
-        self.date = try container.decodeIfPresent(Date.self, forKey: .date)!
-        self.coordinates = try container.decodeIfPresent(GeoPoint.self, forKey: .coordinates) 
-    }
-}
+//
+//    enum CodingKeys: String, CodingKey {
+//        case markerID = "markerid"
+//        case photomarker = "photomarker"
+//        case date = "date"
+//        case coordinates = "coordinates"
+//    }
+//
+//
+//}
 
 final class StorageManager: NSObject, ObservableObject, Identifiable, CLLocationManagerDelegate {
     
@@ -112,8 +122,8 @@ final class StorageManager: NSObject, ObservableObject, Identifiable, CLLocation
             print(path)
             print(name)
             requestAllowOnceLocationPermission()
-            let marcadorsito = marcadoresFinal(markerId: UUID().uuidString, date: Date(), photourl: path, coordinates: GeoPoint(latitude: (loc.center.latitude), longitude: (loc.center.longitude)))
-            let uno = MarkerManagerData(marker: marcadorsito)
+            let marcadorsito = marcadoresFinal( markerId: UUID().uuidString, date: Date(), photourl: path, coordinates: GeoPoint(latitude: (loc.center.latitude), longitude: (loc.center.longitude)))
+            let uno = try marcadoresFinal(from: marcadorsito)
             try await newMarker(marcador: uno)
             print(uno)
             
@@ -126,13 +136,13 @@ final class StorageManager: NSObject, ObservableObject, Identifiable, CLLocation
     private func markerDocument(markerID: String) -> DocumentReference {
         markerCollection.document(markerID)
     }
-    func newMarker(marcador: MarkerManagerData)async throws{
-        try markerCollection.document(marcador.markerID).setData(from: marcador, merge: false)
+    func newMarker(marcador: marcadoresFinal)async throws{
+        try markerCollection.document(marcador.markerId).setData(from: marcador, merge: false)
     }
     
     //: MARK: marcador especifico
-    func getmarkerImage(marcador: String) async throws -> MarkerManagerData {
-        try await markerDocument(markerID: marcador).getDocument(as: MarkerManagerData.self)
+    func getmarkerImage(marcador: String) async throws -> marcadoresFinal {
+        try await markerDocument(markerID: marcador).getDocument(as: Decodable.self)
     }
     
     
@@ -159,13 +169,13 @@ final class StorageManager: NSObject, ObservableObject, Identifiable, CLLocation
     
     //:MARK: download marcadores
     
-    func getAllMarkers() async  throws -> [MarkerManagerData]{
+    func getAllMarkers() async  throws -> [marcadoresFinal]{
         let snapshot = try await markerCollection.getDocuments()
         
-        var markers: [MarkerManagerData] = []
+        var markers: [marcadoresFinal] = []
         
         for document in snapshot.documents{
-            let marker = try document.data(as: MarkerManagerData.self)
+            let marker = try document.data(as: marcadoresFinal.self)
             markers.append(marker)
         }
         return markers
