@@ -10,7 +10,7 @@ import PhotosUI
 import Firebase
 
 struct CameraView: View {
-    @StateObject var viewModel = StorageManager()
+    @StateObject var viewModel = MarkerManager()
     @State var photoselected : PhotosPickerItem? = nil
     
     var body: some View {
