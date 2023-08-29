@@ -50,11 +50,4 @@ final class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         checkLocationAuthorization()
     }
-    
-    func actualLocalization(){
-        
-    }
-    
-    
-    
 }
