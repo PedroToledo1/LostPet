@@ -55,22 +55,30 @@ final class MarkerManager: NSObject, ObservableObject, Identifiable, CLLocationM
         markerCollection.document(markerID)
     }
     
-    func markerProduct(marker: Markers) async throws {
-        try markerDocument(markerID: marker.markerID).setData(from: marker, merge: false)
-    }
-    
-    func getProduct(markerID: String) async throws -> Markers {
+    func getMarker(markerID: String) async throws -> Markers {
         try await markerDocument(markerID: markerID).getDocument(as: Markers.self)
     }
+    //: MARK: subir marcador
     func uploadMarker(markerId: Markers) async throws{
         
         try markerDocument(markerID: markerId.markerID).setData(from: markerId, merge: false)
+    }
+    func getAllMarkers() async throws -> [Markers]{
+        let snapshot = try await markerCollection.getDocuments()
+        
+        var markers: [Markers] = []
+        
+        for document in snapshot.documents{
+            let marker = try document.data(as: Markers.self)
+            markers.append(marker)
+        }
+        return markers
     }
     
     private var imagesReference: StorageReference {
         storage.child("markers")
     }
-    
+    //: MARK: codigo para upload la foto y tener el path
     func saveImage(data: Data) async throws -> (path: String, name: String){
         let meta = StorageMetadata()
         meta.contentType = "image/png"
@@ -88,7 +96,7 @@ final class MarkerManager: NSObject, ObservableObject, Identifiable, CLLocationM
         print(ReturnName)
         return(ReturnPath, ReturnName)
     }
-    
+    //: MARK: guardado y uploaded
     func saveMarkerImage(item: PhotosPickerItem) {
         Task {
             guard let data = try await item.loadTransferable(type: Data.self) else { return }
@@ -107,7 +115,7 @@ final class MarkerManager: NSObject, ObservableObject, Identifiable, CLLocationM
             }
         }
     }
-    
+    //: MARK: CODIGO DE UBICACION
     let locationManager = CLLocationManager()
     
     override init(){

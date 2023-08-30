@@ -9,11 +9,12 @@ import MapKit
 
 @MainActor
 final class markersviewModel: ObservableObject{
-//    @Published private(set) var markers: [MarkerManagerData] = []
-//
-//    func getAllMarkers() async throws {
-//        self.markers = try await StorageManager.shared.getAllMarkers()
-//    }
+    @Published private(set) var markers: [Markers] = []
+    
+    func getAllMarkers() async throws{
+        self.markers = try await MarkerManager.shared.getAllMarkers()
+    }
+    
 }
 
 
@@ -33,9 +34,9 @@ var body: some View {
                 print($userLocation.region)
         }
             .task {
-//                try? await mark.getAllMarkers()
-//                print("succes import markers")
-//                print($mark)
+                try? await mark.getAllMarkers()
+                print("succes import markers")
+                print([mark.markers])
                 
             }
     }

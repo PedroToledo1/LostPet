@@ -8,7 +8,10 @@
 import Foundation
 import MapKit
 
+
+//: MARK: localizacion para el maps cuando se inicia
 final class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate{
+    
     @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.331516, longitude: -121.891054), span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
     
     
@@ -46,7 +49,6 @@ final class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
         print("la ubicacion \(region.center)")
         
     }
-    
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         checkLocationAuthorization()
     }
