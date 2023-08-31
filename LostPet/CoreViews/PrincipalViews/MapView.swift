@@ -22,23 +22,26 @@ struct MapView: View {
     @StateObject private var userLocation = LocationViewModel()
     @StateObject private var mark = markersviewModel()
     
-var body: some View {
-    
-    Map(coordinateRegion: $userLocation.region,
-        showsUserLocation: true
-    )
+    var body: some View {
+        ZStack{
+            Map(coordinateRegion: $userLocation.region,
+                showsUserLocation: true, annotationItems: mark.markers){ marker in
+                MapAnnotation<markersmapview>(coordinate: CLLocationCoordinate2D(latitude: mark.coordinates.latitude, longitude: mark.markers.coordinates.longitude) , content: markersmapview())
+            }
             .ignoresSafeArea()
             .accentColor(Color(.systemGreen))
             .onAppear{
                 userLocation.checkIfLocationServicesIsEnable()
                 print($userLocation.region)
-        }
+            }
             .task {
                 try? await mark.getAllMarkers()
                 print("succes import markers")
                 print([mark.markers])
                 
             }
+            
+        }
     }
     
 }

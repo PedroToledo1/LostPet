@@ -24,6 +24,7 @@ struct MarkerArray: Codable {
 }
 
 struct Markers: Codable, Equatable {
+    
     let markerID: String
     let date: Date?
     let photourl: String?
@@ -37,6 +38,12 @@ struct Markers: Codable, Equatable {
     }
     static func ==(lhs: Markers, rhs: Markers) -> Bool {
         return lhs.markerID == rhs.markerID
+    }
+    init(markerID: String, date: Date?, photourl: String?, coordinates: GeoPoint?) {
+        self.markerID = markerID
+        self.date = date
+        self.photourl = photourl
+        self.coordinates = coordinates
     }
 }
 
