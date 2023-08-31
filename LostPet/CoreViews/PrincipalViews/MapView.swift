@@ -25,9 +25,7 @@ struct MapView: View {
     var body: some View {
         ZStack{
             Map(coordinateRegion: $userLocation.region,
-                showsUserLocation: true, annotationItems: mark.markers){ marker in
-                MapAnnotation<markersmapview>(coordinate: CLLocationCoordinate2D(latitude: mark.coordinates.latitude, longitude: mark.markers.coordinates.longitude) , content: markersmapview())
-            }
+                showsUserLocation: true)
             .ignoresSafeArea()
             .accentColor(Color(.systemGreen))
             .onAppear{
