@@ -14,7 +14,9 @@ final class markersviewModel: ObservableObject{
     @Published private(set) var markers: [Markers] = []
     
     func getAllMarkers() async throws{
+        print("previoooooooooooooooooo")
         self.markers = try await MarkerManager.shared.getAllMarkers()
+        print("funciona la funcion nnnnnnnnnnnnnnnnnnnnnnn")
     }
     
 }

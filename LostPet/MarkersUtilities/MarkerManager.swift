@@ -78,10 +78,10 @@ final class MarkerManager: NSObject, ObservableObject, Identifiable, CLLocationM
             var markers: [Markers] = []
             for document in snapshot.documents{
                 let marker = try document.data(as: Markers.self)
-                
                 markers.append(marker)
-                
+                print("llevandotodo")
             }
+            print(markers)
             print("los datos salen a la luz-------------")
             return markers
         }
