@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "270945D2-3302-422E-8258-E505B8148456"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "486077AE-09CC-4091-B85A-08CD4C0F2AB3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LostPet/MarkersUtilities/MarkerManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "getAllMarkers()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "486077AE-09CC-4091-B85A-08CD4C0F2AB3 - cf7055f29010654"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for LostPet.MarkerManager.getAllMarkers() async throws -&gt; Swift.Array&lt;LostPet.Markers&gt;"
+                  moduleName = "LostPet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pedrotoledo/Desktop/Curso%20IOS/LostPet/LostPet/MarkersUtilities/MarkerManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "984">
+               </Location>
+               <Location
+                  uuid = "486077AE-09CC-4091-B85A-08CD4C0F2AB3 - d1dec8d596766055"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for LostPet.MarkerManager.getAllMarkers() async throws -&gt; Swift.Array&lt;LostPet.Markers&gt;"
+                  moduleName = "LostPet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pedrotoledo/Desktop/Curso%20IOS/LostPet/LostPet/MarkersUtilities/MarkerManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "88">
+               </Location>
+               <Location
+                  uuid = "486077AE-09CC-4091-B85A-08CD4C0F2AB3 - cf7055f29010654"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for LostPet.MarkerManager.getAllMarkers() async throws -&gt; Swift.Array&lt;LostPet.Markers&gt;"
+                  moduleName = "LostPet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pedrotoledo/Desktop/Curso%20IOS/LostPet/LostPet/MarkersUtilities/MarkerManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "656">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

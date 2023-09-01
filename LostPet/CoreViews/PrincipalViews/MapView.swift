@@ -6,8 +6,10 @@
 //
 import SwiftUI
 import MapKit
+import FirebaseStorage
+import FirebaseFirestore
 
-@MainActor
+
 final class markersviewModel: ObservableObject{
     @Published private(set) var markers: [Markers] = []
     
@@ -17,33 +19,31 @@ final class markersviewModel: ObservableObject{
     
 }
 
-
 struct MapView: View {
-    @StateObject private var userLocation = LocationViewModel()
     @StateObject private var mark = markersviewModel()
+    
+    @StateObject private var userLocation = LocationViewModel()
+    
     
     var body: some View {
         ZStack{
             Map(coordinateRegion: $userLocation.region,
-                showsUserLocation: true)
+                showsUserLocation: true,
+                annotationItems: mark.markers){marker in
+                MapAnnotation<markersmapview>(coordinate: CLLocationCoordinate2D(latitude: marker.coordinates!.latitude, longitude: marker.coordinates!.longitude)){
+                    markersmapview()
+                }
+            }
             .ignoresSafeArea()
             .accentColor(Color(.systemGreen))
             .onAppear{
                 userLocation.checkIfLocationServicesIsEnable()
                 print($userLocation.region)
             }
-            .task {
-                try? await mark.getAllMarkers()
-                print("succes import markers")
-                print([mark.markers])
-                
-            }
             
         }
     }
-    
 }
-
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
         MapView()

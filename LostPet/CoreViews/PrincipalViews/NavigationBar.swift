@@ -9,6 +9,7 @@ import SwiftUI
 import _PhotosUI_SwiftUI
 
 struct NavigationBar: View {
+    @StateObject private var mark = markersviewModel()
     @Binding var showsignInView: Bool
     var body: some View {
         NavigationStack {
@@ -37,7 +38,11 @@ struct NavigationBar: View {
                 }
             }
             .onAppear{
-                
+                Task {
+                    try? await mark.getAllMarkers()
+                    print("succes import markers")
+                    print([mark.markers])
+                }
             }
         }
     }

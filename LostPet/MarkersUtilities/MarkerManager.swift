@@ -23,14 +23,15 @@ struct MarkerArray: Codable {
     let marcadores: [Markers]
 }
 
-struct Markers: Codable, Equatable {
-    
+struct Markers: Codable, Equatable, Identifiable {
+    var id: Int
     let markerID: String
     let date: Date?
     let photourl: String?
     let coordinates: GeoPoint?
     
     enum CodingKeys: String, CodingKey {
+        case id
         case markerID
         case date
         case photourl
@@ -39,7 +40,8 @@ struct Markers: Codable, Equatable {
     static func ==(lhs: Markers, rhs: Markers) -> Bool {
         return lhs.markerID == rhs.markerID
     }
-    init(markerID: String, date: Date?, photourl: String?, coordinates: GeoPoint?) {
+    init(id: Int, markerID: String, date: Date?, photourl: String?, coordinates: GeoPoint?) {
+        self.id = id
         self.markerID = markerID
         self.date = date
         self.photourl = photourl
@@ -50,6 +52,7 @@ struct Markers: Codable, Equatable {
 final class MarkerManager: NSObject, ObservableObject, Identifiable, CLLocationManagerDelegate {
     
     @Published var loc = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.331516, longitude: -121.891054), span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
+    var a: Int = 0
     
     static let shared = MarkerManager()
     
@@ -71,16 +74,17 @@ final class MarkerManager: NSObject, ObservableObject, Identifiable, CLLocationM
         try markerDocument(markerID: markerId.markerID).setData(from: markerId, merge: false)
     }
     func getAllMarkers() async throws -> [Markers]{
-        let snapshot = try await markerCollection.getDocuments()
-        
-        var markers: [Markers] = []
-        
-        for document in snapshot.documents{
-            let marker = try document.data(as: Markers.self)
-            markers.append(marker)
+            let snapshot = try await markerCollection.getDocuments()
+            var markers: [Markers] = []
+            for document in snapshot.documents{
+                let marker = try document.data(as: Markers.self)
+                
+                markers.append(marker)
+                
+            }
+            print("los datos salen a la luz-------------")
+            return markers
         }
-        return markers
-    }
     
     private var imagesReference: StorageReference {
         storage.child("markers")
@@ -116,8 +120,9 @@ final class MarkerManager: NSObject, ObservableObject, Identifiable, CLLocationM
             func createMarker() async throws{
                 print("entro a create marker")
                 requestAllowOnceLocationPermission()
-                let nuevoMark = Markers(markerID: (UUID().uuidString), date: Date(), photourl: path, coordinates: GeoPoint(latitude: loc.center.latitude, longitude: loc.center.longitude))
+                let nuevoMark = Markers(id: a, markerID: (UUID().uuidString), date: Date(), photourl: path, coordinates: GeoPoint(latitude: loc.center.latitude, longitude: loc.center.longitude))
                 try await uploadMarker(markerId: nuevoMark)
+                a=a+1
                print(nuevoMark)
             }
         }
@@ -145,3 +150,5 @@ final class MarkerManager: NSObject, ObservableObject, Identifiable, CLLocationM
         print(error.localizedDescription)
     }
 }
+
+
