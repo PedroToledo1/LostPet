@@ -73,27 +73,13 @@ final class MarkerManager: NSObject, ObservableObject, Identifiable, CLLocationM
         
         try markerDocument(markerID: markerId.markerID).setData(from: markerId, merge: false)
     }
-//    func getAllMarkers() async throws {
-//        try await markerCollection.getDocuments()
-////            let snapshot = try await markerCollection.getDocuments()
-////            var markers: [Markers] = []
-////            for document in snapshot.documents{
-////                let marker = try document.data(as: Markers.self)
-////                markers.append(marker)
-////                print("llevandotodo")
-////            }
-////            print(markers)
-////            print("los datos salen a la luz-------------")
-////            return markers
-//        }
-    
 
     func getMarket(markerID: String) async throws -> Markers{
         try await markerDocument(markerID: markerID).getDocument(as: Markers.self)
     }
     
     func getAllMarker() async throws -> [Markers] {
-        try markerCollection.getDocuments(as: Markers.self)
+        try await markerCollection.GetDocuments(as: Markers.self)
     }
     
     private var imagesReference: StorageReference {
@@ -163,7 +149,7 @@ extension Query {
 //    func getDocuments<T>(as type: T.Type) async throws -> [T] where T : Decodable {
 //        try await getDocumentsWithSnapshot(as: type).products
 //    }
-    func GetDocument<T>(as type: T.Type) async throws -> [T] where T: Decodable{
+    func GetDocuments<T>(as type: T.Type) async throws -> [T] where T: Decodable{
         let snapshot = try await self.getDocuments()
         print("get document query")
         
