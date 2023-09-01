@@ -37,16 +37,16 @@ struct Markers: Codable, Equatable, Identifiable {
         case photourl
         case coordinates
     }
-    static func ==(lhs: Markers, rhs: Markers) -> Bool {
-        return lhs.markerID == rhs.markerID
-    }
-    init(id: Int, markerID: String, date: Date?, photourl: String?, coordinates: GeoPoint?) {
-        self.id = id
-        self.markerID = markerID
-        self.date = date
-        self.photourl = photourl
-        self.coordinates = coordinates
-    }
+//    static func ==(lhs: Markers, rhs: Markers) -> Bool {
+//        return lhs.markerID == rhs.markerID
+//    }
+//    init(id: Int, markerID: String, date: Date?, photourl: String?, coordinates: GeoPoint?) {
+//        self.id = id
+//        self.markerID = markerID
+//        self.date = date
+//        self.photourl = photourl
+//        self.coordinates = coordinates
+//    }
 }
 
 final class MarkerManager: NSObject, ObservableObject, Identifiable, CLLocationManagerDelegate {
@@ -153,8 +153,7 @@ extension Query {
         let snapshot = try await self.getDocuments()
         print("get document query")
         
-        return try snapshot.documents.map({
-            document in
+        return try snapshot.documents.map({document in
             try document.data(as: T.self)
         })
     }

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-//: MARK: idea de como se viera los marcadores en el maps
+
 struct markersmapview: View {
     var body: some View {
 
