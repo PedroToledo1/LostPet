@@ -14,10 +14,10 @@
             filePath = "LostPet/MarkersUtilities/MarkerManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "getAllMarkers()"
-            landmarkType = "7">
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "MarkerManager"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

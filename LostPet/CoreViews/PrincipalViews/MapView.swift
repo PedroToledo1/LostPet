@@ -15,7 +15,7 @@ final class markersviewModel: ObservableObject{
     
     func getAllMarkers() async throws{
         print("previoooooooooooooooooo")
-        self.markers = try await MarkerManager.shared.getAllMarkers()
+        self.markers = try await MarkerManager.shared.getAllMarker()
         print("funciona la funcion nnnnnnnnnnnnnnnnnnnnnnn")
     }
     
