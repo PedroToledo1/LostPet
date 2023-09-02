@@ -16,35 +16,39 @@ final class markersviewModel: ObservableObject{
 }
 
 struct MapView: View {
-    @StateObject private var mark = MarkerManager()
-    
+    //    @StateObject private var mark = MarkerManager()
+    @ObservedObject var marcadores = MarkerManager()
     @StateObject private var userLocation = LocationViewModel()
     
     
     var body: some View {
-    ZStack{
-        //            Map(coordinateRegion: $userLocation.region,
-        //                showsUserLocation: true,
-        //                annotationItems: $mark.markers){marker in
-        //                MapAnnotation<markersmapview>(coordinate: CLLocationCoordinate2D(latitude: marker.coordinates.latitude, longitude: marker.coordinates.longitude)){
-        //                    markersmapview()
-        //                }
-        Map(coordinateRegion: $userLocation.region,
-            showsUserLocation: true)
-    }
-                .ignoresSafeArea()
-            .accentColor(Color(.systemGreen))
-            .onAppear{
-                Task{
-                    userLocation.checkIfLocationServicesIsEnable()
-                    mark.getAllMarker()
-                    print("succes import markers")
-                    
+        ZStack{
+            Map(coordinateRegion: $userLocation.region,
+                showsUserLocation: true,
+                annotationItems: marcadores.markers){marker in
+                MapAnnotation<markersmapview>(coordinate: CLLocationCoordinate2D(latitude: marker.coordinates!.latitude, longitude: marker.coordinates!.longitude)){
+                    markersmapview()
                 }
+                //        Map(coordinateRegion: $userLocation.region,
+                //            showsUserLocation: true)
             }
+                .ignoresSafeArea()
+                .accentColor(Color(.systemGreen))
+                .onAppear{
+                    Task{
+                        userLocation.checkIfLocationServicesIsEnable()
+                        try await marcadores.getAllMarker()
+                                            print("succes import markers")
+                        
+                    }
+                }
+
+                
+            
             
         }
     }
+}
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {

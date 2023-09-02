@@ -24,15 +24,17 @@ struct MarkerArray: Codable {
 }
 
 struct Markers: Codable, Equatable, Identifiable {
-    var id: Int
+    
     let markerID: String
+    var id: Int
     let date: Date?
     let photourl: String?
     let coordinates: GeoPoint?
     
     enum CodingKeys: String, CodingKey {
-        case id
+        
         case markerID
+        case id
         case date
         case photourl
         case coordinates
@@ -53,6 +55,7 @@ final class MarkerManager: NSObject, ObservableObject, Identifiable, CLLocationM
     
     @Published var loc = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.331516, longitude: -121.891054), span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
     var a: Int = 0
+    @Published var markers: [Markers] = []
     
     static let shared = MarkerManager()
     
@@ -69,27 +72,25 @@ final class MarkerManager: NSObject, ObservableObject, Identifiable, CLLocationM
         try markerDocument(markerID: markerId.markerID).setData(from: markerId, merge: false)
     }
     
-//    func getAllMarker() async throws -> [Markers]{
-//       let snapshot = try await markerCollection.getDocuments()
-//        var markers: [Markers] = []
-//        for document in snapshot.documents{
-//            let marker = try document.data(as: Markers.self)
-//            markers.append(marker)
-//        }
-//        print("llego hasta aca")
-//        return markers
-//    }
-    func getAllMarker() {
-        Firestore.firestore().collection("markers").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    print("\(document.documentID) => \(document.data())")
-                    
+    func getAllMarker() async throws -> [Markers]{
+        let dataMarker = Firestore.firestore()
+        
+        
+        dataMarker.collection("markers").getDocuments { snapshot, error in
+            
+            if error == nil {
+                DispatchQueue.main.async{
+                    if let snapshot = snapshot {
+                        self.markers = snapshot.documents.map{ d in
+                            return Markers(markerID: d.documentID, id: d["id"] as? Int ?? 001, date: d["date"] as? Date ?? Date(), photourl: d["photourl"] as? String ?? "", coordinates: d["coordinates"] as? GeoPoint)
+                        }
+                    }
                 }
+            }else {
+                
             }
         }
+        return markers
     }
     
     private var imagesReference: StorageReference {
@@ -126,7 +127,7 @@ final class MarkerManager: NSObject, ObservableObject, Identifiable, CLLocationM
             func createMarker() async throws{
                 print("entro a create marker")
                 requestAllowOnceLocationPermission()
-                let nuevoMark = Markers(id: a, markerID: (UUID().uuidString), date: Date(), photourl: path, coordinates: GeoPoint(latitude: loc.center.latitude, longitude: loc.center.longitude))
+                let nuevoMark = Markers(markerID: (UUID().uuidString),id: a, date: Date(), photourl: path, coordinates: GeoPoint(latitude: loc.center.latitude, longitude: loc.center.longitude))
                 try await uploadMarker(markerId: nuevoMark)
                 a=a+1
                print(nuevoMark)
