@@ -12,7 +12,6 @@ import Firebase
 
 
 struct CameraView: View {
-    @StateObject private var mark = markersviewModel()
     @StateObject var viewModel = MarkerManager()
     @State var photoselected : PhotosPickerItem? = nil
     

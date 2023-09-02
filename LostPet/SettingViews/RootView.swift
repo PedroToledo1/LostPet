@@ -9,7 +9,6 @@ import SwiftUI
 
 struct RootView: View {
     @State private var showsignInView: Bool = false
-    @StateObject private var mark = markersviewModel()
     var body: some View {
         ZStack{
             NavigationStack{
@@ -20,9 +19,6 @@ struct RootView: View {
                     try? AuthenticationManager.shared.getProvider()
                     let authuser = try? AuthenticationManager.shared.getAuthenticatedUser()
                     self.showsignInView = authuser == nil ? true : false
-                    try? await mark.getAllMarkers()
-                    print("succes import markers")
-                    print([mark.markers])
                 }
             }
         }

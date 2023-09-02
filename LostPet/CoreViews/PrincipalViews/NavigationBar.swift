@@ -12,7 +12,7 @@ struct NavigationBar: View {
 
     @Binding var showsignInView: Bool
     var body: some View {
-        NavigationStack {
+        
             
             TabView{
                 NavigationView {
@@ -22,6 +22,7 @@ struct NavigationBar: View {
                     Image(systemName: "map.circle")
                     Text("Map")
                 }
+                .toolbarBackground(Color.white, for: .tabBar)
                 NavigationView {
                     CameraView()
                 }
@@ -29,15 +30,19 @@ struct NavigationBar: View {
                     Image(systemName: "camera.circle")
                     Text("Camara")
                 }
+                .toolbarBackground(Color.white, for: .tabBar)
                 NavigationView {
                     ProfileViews(showsignInView: $showsignInView)
                 }
+                
                 .tabItem{
                     Image(systemName: "person.crop.circle")
                     Text("Account")
                 }
-            }
+                
         }
+            .toolbarBackground(Color.white, for: .tabBar)
+            
     }
 }
 

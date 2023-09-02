@@ -64,22 +64,32 @@ final class MarkerManager: NSObject, ObservableObject, Identifiable, CLLocationM
     private func markerDocument(markerID: String) -> DocumentReference {
         markerCollection.document(markerID)
     }
-    
-    func getMarker(markerID: String) async throws -> Markers {
-        try await markerDocument(markerID: markerID).getDocument(as: Markers.self)
-    }
     //: MARK: subir marcador
     func uploadMarker(markerId: Markers) async throws{
-        
         try markerDocument(markerID: markerId.markerID).setData(from: markerId, merge: false)
     }
-
-    func getMarket(markerID: String) async throws -> Markers{
-        try await markerDocument(markerID: markerID).getDocument(as: Markers.self)
-    }
     
-    func getAllMarker() async throws -> [Markers] {
-        try await markerCollection.GetDocuments(as: Markers.self)
+//    func getAllMarker() async throws -> [Markers]{
+//       let snapshot = try await markerCollection.getDocuments()
+//        var markers: [Markers] = []
+//        for document in snapshot.documents{
+//            let marker = try document.data(as: Markers.self)
+//            markers.append(marker)
+//        }
+//        print("llego hasta aca")
+//        return markers
+//    }
+    func getAllMarker() {
+        Firestore.firestore().collection("markers").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                    
+                }
+            }
+        }
     }
     
     private var imagesReference: StorageReference {
@@ -144,56 +154,3 @@ final class MarkerManager: NSObject, ObservableObject, Identifiable, CLLocationM
         print(error.localizedDescription)
     }
 }
-extension Query {
-    
-//    func getDocuments<T>(as type: T.Type) async throws -> [T] where T : Decodable {
-//        try await getDocumentsWithSnapshot(as: type).products
-//    }
-    func GetDocuments<T>(as type: T.Type) async throws -> [T] where T: Decodable{
-        let snapshot = try await self.getDocuments()
-        print("get document query")
-        
-        return try snapshot.documents.map({document in
-            try document.data(as: T.self)
-        })
-    }
-    
-//    func getDocumentsWithSnapshot<T>(as type: T.Type) async throws -> (products: [T], lastDocument: DocumentSnapshot?) where T : Decodable {
-//        let snapshot = try await self.getDocuments()
-//
-//        let products = try snapshot.documents.map({ document in
-//            try document.data(as: T.self)
-//        })
-//
-//        return (products, snapshot.documents.last)
-//    }
-//
-//    func startOptionally(afterDocument lastDocument: DocumentSnapshot?) -> Query {
-//        guard let lastDocument else { return self }
-//        return self.start(afterDocument: lastDocument)
-//    }
-//
-//    func aggregateCount() async throws -> Int {
-//        let snapshot = try await self.count.getAggregation(source: .server)
-//        return Int(truncating: snapshot.count)
-//    }
-//
-//    func addSnapshotListener<T>(as type: T.Type) -> (AnyPublisher<[T], Error>, ListenerRegistration) where T : Decodable {
-//        let publisher = PassthroughSubject<[T], Error>()
-//
-//        let listener = self.addSnapshotListener { querySnapshot, error in
-//            guard let documents = querySnapshot?.documents else {
-//                print("No documents")
-//                return
-//            }
-//
-//            let products: [T] = documents.compactMap({ try? $0.data(as: T.self) })
-//            publisher.send(products)
-//        }
-//
-//        return (publisher.eraseToAnyPublisher(), listener)
-//    }
-    
-}
-
-
