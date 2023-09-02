@@ -14,7 +14,7 @@ struct markersmapview: View {
     var body: some View {
 
         NavigationLink(destination: {
-            
+            markersInfoShows(markers: markers)
         }, label: {
             ZStack{
                 Circle()
