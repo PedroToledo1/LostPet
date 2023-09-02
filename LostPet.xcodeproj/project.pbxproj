@@ -28,6 +28,7 @@
 		4AD0E7CB2A96EE1D005A8507 /* GeoFire in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD0E7CA2A96EE1D005A8507 /* GeoFire */; };
 		4AD0E7CD2A96EE1D005A8507 /* GeoFireUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD0E7CC2A96EE1D005A8507 /* GeoFireUtils */; };
 		4AD0E7D42AA24834005A8507 /* Querys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD0E7D32AA24834005A8507 /* Querys.swift */; };
+		4AD0E7D62AA3AE84005A8507 /* markersInfoShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD0E7D52AA3AE83005A8507 /* markersInfoShows.swift */; };
 		4AD865232A8C69750012A1FF /* AppleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD865222A8C69750012A1FF /* AppleHelper.swift */; };
 		4AD865522A8D2CCF0012A1FF /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD865512A8D2CCF0012A1FF /* FirebaseFirestoreCombine-Community */; };
 		4AD865572A8D2DE30012A1FF /* ProfileViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD865562A8D2DE30012A1FF /* ProfileViews.swift */; };
@@ -59,6 +60,7 @@
 		4A4281CD2A8C2D10000A11FC /* GoogleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleHelper.swift; sourceTree = "<group>"; };
 		4AD0E7C92A96EE0A005A8507 /* geofire-objc-5.0.0 */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "geofire-objc-5.0.0"; path = "../../../Downloads/geofire-objc-5.0.0"; sourceTree = "<group>"; };
 		4AD0E7D32AA24834005A8507 /* Querys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Querys.swift; sourceTree = "<group>"; };
+		4AD0E7D52AA3AE83005A8507 /* markersInfoShows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = markersInfoShows.swift; sourceTree = "<group>"; };
 		4AD865212A8C5BC60012A1FF /* LostPet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LostPet.entitlements; sourceTree = "<group>"; };
 		4AD865222A8C69750012A1FF /* AppleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleHelper.swift; sourceTree = "<group>"; };
 		4AD865562A8D2DE30012A1FF /* ProfileViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViews.swift; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				4AEFFC5E2A96ADE700A0ACDA /* markersmapview.swift */,
+				4AD0E7D52AA3AE83005A8507 /* markersInfoShows.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 			files = (
 				4AD8656B2A8FFD1E0012A1FF /* NavigationBar.swift in Sources */,
 				4AD8655C2A8D3A540012A1FF /* AuthenticationViewModel.swift in Sources */,
+				4AD0E7D62AA3AE84005A8507 /* markersInfoShows.swift in Sources */,
 				4AD8656F2A91B8120012A1FF /* UserLocationManager.swift in Sources */,
 				4A0A2CA12A8ABABE004BB1AE /* ContentView.swift in Sources */,
 				4AD8656D2A8FFD3D0012A1FF /* CameraView.swift in Sources */,

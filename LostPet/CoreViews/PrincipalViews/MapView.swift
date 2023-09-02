@@ -12,7 +12,6 @@ import FirebaseFirestore
 
 final class markersviewModel: ObservableObject{
     @Published private(set) var markers: [Markers] = []
-    
 }
 
 struct MapView: View {
@@ -27,7 +26,7 @@ struct MapView: View {
                 showsUserLocation: true,
                 annotationItems: marcadores.markers){marker in
                 MapAnnotation<markersmapview>(coordinate: CLLocationCoordinate2D(latitude: marker.coordinates!.latitude, longitude: marker.coordinates!.longitude)){
-                    markersmapview()
+                    markersmapview(markers: marker)
                 }
                 //        Map(coordinateRegion: $userLocation.region,
                 //            showsUserLocation: true)

@@ -23,7 +23,7 @@ struct MarkerArray: Codable {
     let marcadores: [Markers]
 }
 
-struct Markers: Codable, Equatable, Identifiable {
+struct Markers: Codable, Equatable, Identifiable{
     
     let markerID: String
     var id: Int

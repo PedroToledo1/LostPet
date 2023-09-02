@@ -6,25 +6,30 @@
 //
 
 import SwiftUI
-
+import Firebase
 struct markersmapview: View {
+
+    let markers : Markers
+    
     var body: some View {
 
         NavigationLink(destination: {
-        
+            
         }, label: {
             ZStack{
                 Circle()
                     .foregroundColor(.green)
-                    .frame(width: 22)
+                    .frame(width: 30)
                         
                 Circle()
                     .foregroundColor(.white)
-                    .frame(width: 20)
+                    .frame(width: 28)
                         
                 // Image(uiImage: image)
-                Image(systemName: "gear")
-                    .frame(width: 18)
+                Image(markers.photourl!)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 26)
                     .shadow(color: .black, radius: 2)
                     .clipShape(Circle())
                         
@@ -35,6 +40,6 @@ struct markersmapview: View {
 
 struct markersmapview_Previews: PreviewProvider {
     static var previews: some View {
-        markersmapview()
+        markersmapview(markers: Markers(markerID: "prueba", id: 12, date: Date(), photourl: "enana", coordinates: GeoPoint(latitude: 22.22, longitude: 22.22)))
     }
 }
