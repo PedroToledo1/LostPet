@@ -27,9 +27,10 @@ struct Markers: Codable, Equatable, Identifiable{
     
     let markerID: String
     var id: Int
-    let date: Date?
+    let date: Timestamp?
     let photourl: String?
     let coordinates: GeoPoint?
+    let imagepath: String?
     
     enum CodingKeys: String, CodingKey {
         
@@ -38,17 +39,9 @@ struct Markers: Codable, Equatable, Identifiable{
         case date
         case photourl
         case coordinates
+        case imagepath
     }
-//    static func ==(lhs: Markers, rhs: Markers) -> Bool {
-//        return lhs.markerID == rhs.markerID
-//    }
-//    init(id: Int, markerID: String, date: Date?, photourl: String?, coordinates: GeoPoint?) {
-//        self.id = id
-//        self.markerID = markerID
-//        self.date = date
-//        self.photourl = photourl
-//        self.coordinates = coordinates
-//    }
+
 }
 
 final class MarkerManager: NSObject, ObservableObject, Identifiable, CLLocationManagerDelegate {
@@ -74,15 +67,12 @@ final class MarkerManager: NSObject, ObservableObject, Identifiable, CLLocationM
     
     func getAllMarker() async throws -> [Markers]{
         let dataMarker = Firestore.firestore()
-        
-        
         dataMarker.collection("markers").getDocuments { snapshot, error in
-            
             if error == nil {
                 DispatchQueue.main.async{
                     if let snapshot = snapshot {
                         self.markers = snapshot.documents.map{ d in
-                            return Markers(markerID: d.documentID, id: d["id"] as? Int ?? 001, date: d["date"] as? Date ?? Date(), photourl: d["photourl"] as? String ?? "", coordinates: d["coordinates"] as? GeoPoint)
+                            return Markers(markerID: d.documentID, id: d["id"] as? Int ?? 001, date: d["date"] as? Timestamp ?? Timestamp(), photourl: d["photourl"] as? String ?? "", coordinates: d["coordinates"] as? GeoPoint, imagepath: d["imagepath"] as? String ?? "problem with server, sorry")
                         }
                     }
                 }
@@ -96,6 +86,8 @@ final class MarkerManager: NSObject, ObservableObject, Identifiable, CLLocationM
     private var imagesReference: StorageReference {
         storage.child("markers")
     }
+    
+    
     //: MARK: codigo para upload la foto y tener el path
     func saveImage(data: Data) async throws -> (path: String, name: String){
         let meta = StorageMetadata()
@@ -118,22 +110,40 @@ final class MarkerManager: NSObject, ObservableObject, Identifiable, CLLocationM
     func saveMarkerImage(item: PhotosPickerItem) {
         Task {
             guard let data = try await item.loadTransferable(type: Data.self) else { return }
-            print("savemarker image parte 1")
             let (path, name) = try await MarkerManager.shared.saveImage(data: data)
-            print("success")
-            print(path)
-            print(name)
             try await createMarker()
             func createMarker() async throws{
                 print("entro a create marker")
                 requestAllowOnceLocationPermission()
-                let nuevoMark = Markers(markerID: (UUID().uuidString),id: a, date: Date(), photourl: path, coordinates: GeoPoint(latitude: loc.center.latitude, longitude: loc.center.longitude))
+                let nuevoMark = Markers(markerID: (UUID().uuidString),id: a, date: Timestamp(), photourl: path, coordinates: GeoPoint(latitude: loc.center.latitude, longitude: loc.center.longitude), imagepath: path)
                 try await uploadMarker(markerId: nuevoMark)
                 a=a+1
                print(nuevoMark)
             }
         }
     }
+    
+    //:MARK: get image download
+    func getDataImage(markerID: String, path: String)async throws -> Data{
+        try await storage.child(path).data(maxSize: 3 * 1024 * 1024)
+    }
+    func getUIImage(markerID: String, path: String)async throws -> UIImage{
+        let data = try await getDataImage(markerID: markerID, path: path)
+        guard let image = UIImage(data: data) else {
+            throw URLError(.badURL)
+        }
+        return image
+    }
+    func showImage(path: String)async throws{
+        try await MarkerManager.shared.updateImageMarker(path: path)
+    }
+    
+    func updateImageMarker(path: String) async throws{
+        let data: [String:Any] = [
+            Markers.CodingKeys.imagepath.rawValue : path
+        ]
+    }
+    
     //: MARK: CODIGO DE UBICACION
     let locationManager = CLLocationManager()
     override init(){

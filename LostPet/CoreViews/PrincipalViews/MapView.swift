@@ -37,7 +37,7 @@ struct MapView: View {
                     Task{
                         userLocation.checkIfLocationServicesIsEnable()
                         try await marcadores.getAllMarker()
-                                            print("succes import markers")
+                        print("succes import markers")
                         
                     }
                 }

@@ -8,6 +8,7 @@
 import SwiftUI
 import PhotosUI
 import Firebase
+import AVKit
 
 
 
@@ -19,7 +20,6 @@ struct CameraView: View {
         VStack{
             Spacer()
             HStack{
-                
                     PhotosPicker(selection: $photoselected, matching: .images ,photoLibrary: .shared(),
                                  label:{Image(systemName: "photo.fill")})
                 
