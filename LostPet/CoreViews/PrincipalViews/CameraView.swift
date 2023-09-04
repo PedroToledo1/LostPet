@@ -36,7 +36,11 @@ struct CameraView: View {
             .buttonStyle(.bordered)
             Spacer()
         }
-        
+//        .onChange(of: photoselected, perform: { newValue in
+//            if let newValue {
+//                viewModel.saveProfileImage(item: newValue)
+//            }
+//        })
     }
         
 }

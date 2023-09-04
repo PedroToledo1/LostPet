@@ -14,30 +14,23 @@ struct markersInfoShows: View {
     var body: some View {
         
         VStack{
-            if let image{
-                Image(uiImage: image)
-                    .resizable()
-                    .scaledToFit()
-            }
-            Divider()
-            HStack{
-                Text("Fecha")
-                Text("\(markers.date!)")
-            }
+            
+            AsyncImage(url: markers.photourl)
+//                .resizable()
+                .scaledToFit()
         }
-        .task {
-            do{
-                if markers.imagepath != nil{
-                    let image = try? await MarkerManager.shared.getUIImage(markerID: markers.markerID, path: markers.imagepath!)
-                    self.image = image
-                }
-            }
+        Divider()
+        HStack{
+            Text("Fecha")
+            Text("\(markers.date!)")
         }
     }
-}
+
+    }
+
 
 struct markersInfoShows_Previews: PreviewProvider {
     static var previews: some View {
-        markersInfoShows(markers: Markers(markerID: "prueba", id: 12, date: Timestamp(), photourl: "enana", coordinates: GeoPoint(latitude: 22.22, longitude: 22.22), imagepath: "jnbk"))
+        markersInfoShows(markers: Markers(markerID: "prueba", id: 12, date: Date(), photourl: URL(string: "hola"), coordinates: GeoPoint(latitude: 22.22, longitude: 22.22), imagepath: "jnbk"))
     }
 }

@@ -27,8 +27,8 @@ struct Markers: Codable, Equatable, Identifiable{
     
     let markerID: String
     var id: Int
-    let date: Timestamp?
-    let photourl: String?
+    let date: Date?
+    let photourl: URL?
     let coordinates: GeoPoint?
     let imagepath: String?
     
@@ -72,7 +72,7 @@ final class MarkerManager: NSObject, ObservableObject, Identifiable, CLLocationM
                 DispatchQueue.main.async{
                     if let snapshot = snapshot {
                         self.markers = snapshot.documents.map{ d in
-                            return Markers(markerID: d.documentID, id: d["id"] as? Int ?? 001, date: d["date"] as? Timestamp ?? Timestamp(), photourl: d["photourl"] as? String ?? "", coordinates: d["coordinates"] as? GeoPoint, imagepath: d["imagepath"] as? String ?? "problem with server, sorry")
+                            return Markers(markerID: d.documentID, id: d["id"] as? Int ?? 001, date: d["date"] as? Date ?? Date(), photourl: d["photourl"] as? URL, coordinates: d["coordinates"] as? GeoPoint, imagepath: d["imagepath"] as? String ?? "problem with server, sorry")
                         }
                     }
                 }
@@ -110,12 +110,13 @@ final class MarkerManager: NSObject, ObservableObject, Identifiable, CLLocationM
     func saveMarkerImage(item: PhotosPickerItem) {
         Task {
             guard let data = try await item.loadTransferable(type: Data.self) else { return }
-            let (path, name) = try await MarkerManager.shared.saveImage(data: data)
+            let (path, _) = try await MarkerManager.shared.saveImage(data: data)
             try await createMarker()
             func createMarker() async throws{
                 print("entro a create marker")
+                let url = try await MarkerManager.shared.getUrlForImage(path: path)
                 requestAllowOnceLocationPermission()
-                let nuevoMark = Markers(markerID: (UUID().uuidString),id: a, date: Timestamp(), photourl: path, coordinates: GeoPoint(latitude: loc.center.latitude, longitude: loc.center.longitude), imagepath: path)
+                let nuevoMark = Markers(markerID: (UUID().uuidString),id: a, date: Date(), photourl: url, coordinates: GeoPoint(latitude: loc.center.latitude, longitude: loc.center.longitude), imagepath: path)
                 try await uploadMarker(markerId: nuevoMark)
                 a=a+1
                print(nuevoMark)
@@ -123,25 +124,28 @@ final class MarkerManager: NSObject, ObservableObject, Identifiable, CLLocationM
         }
     }
     
-    //:MARK: get image download
-    func getDataImage(markerID: String, path: String)async throws -> Data{
-        try await storage.child(path).data(maxSize: 3 * 1024 * 1024)
-    }
-    func getUIImage(markerID: String, path: String)async throws -> UIImage{
-        let data = try await getDataImage(markerID: markerID, path: path)
-        guard let image = UIImage(data: data) else {
-            throw URLError(.badURL)
-        }
-        return image
-    }
-    func showImage(path: String)async throws{
-        try await MarkerManager.shared.updateImageMarker(path: path)
-    }
-    
-    func updateImageMarker(path: String) async throws{
-        let data: [String:Any] = [
-            Markers.CodingKeys.imagepath.rawValue : path
-        ]
+//    //:MARK: get image download
+//    func getDataImage(markerID: String, path: String)async throws -> Data{
+//        try await storage.child(path).data(maxSize: 3 * 1024 * 1024)
+//    }
+//    func getUIImage(markerID: String, path: String)async throws -> UIImage{
+//        let data = try await getDataImage(markerID: markerID, path: path)
+//        guard let image = UIImage(data: data) else {
+//            throw URLError(.badURL)
+//        }
+//        return image
+//    }
+//    func showImage(path: String)async throws{
+//        try await MarkerManager.shared.updateImageMarker(path: path)
+//    }
+//    func updateImageMarker(path: String) async throws{
+//        let data: [String:Any] = [
+//            Markers.CodingKeys.imagepath.rawValue : path
+//        ]
+//    }
+//    
+    func getUrlForImage(path: String)async throws->URL{
+        try await Storage.storage().reference(withPath: path).downloadURL()
     }
     
     //: MARK: CODIGO DE UBICACION
